@@ -33,10 +33,10 @@ py -m venv .venv
 pip install -r requirements-dev.txt
 ```
 
-Meldet PowerShell einen Fehler wegen der Ausführungsrichtlinie, gib einmal das ein und aktiviere dann nochmal:
+Meldet PowerShell einen Fehler wegen der Ausführungsrichtlinie, gib **einmal** das ein (gilt dann dauerhaft für deinen Benutzer) und aktiviere dann nochmal:
 
 ```powershell
-Set-ExecutionPolicy -Scope Process RemoteSigned
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 ```
 
 In der normalen Eingabeaufforderung (cmd) heißt der Aktivieren-Befehl `.venv\Scripts\activate.bat`.
@@ -52,7 +52,9 @@ Es muss eine Version `5.2.x` erscheinen. Vorne in der Zeile steht dann `(.venv)`
 ## Wichtig
 
 - Die virtuelle Umgebung `.venv` wird **nicht** eingecheckt. Sie steht in der `.gitignore`.
-- Nach jedem Neustart des Terminals musst du `.venv` wieder aktivieren (nur der zweite Befehl).
+- **In VS Code musst du nicht jedes Mal aktivieren.** Einmal einstellen: `Cmd+Shift+P` (Windows: `Strg+Shift+P`), **Python: Select Interpreter** wählen und den Eintrag mit `.venv` nehmen. Jedes **neue** Terminal in VS Code aktiviert die Umgebung danach von selbst (vorne steht `(.venv)`). Schon offene Terminals einmal schließen und neu öffnen.
+- In einem normalen Terminal (ohne VS Code) musst du `.venv` nach jedem Neustart wieder aktivieren (nur der zweite Befehl).
+- Ohne Aktivieren geht es auch, wenn du den Python-Pfad direkt nimmst: `.venv/bin/python manage.py runserver` (Mac) oder `.venv\Scripts\python manage.py runserver` (Windows).
 - Beenden geht mit `deactivate`.
 - `requirements.txt` enthält Django, `requirements-dev.txt` enthält zusätzlich flake8 und black.
 - Die Doku liegt im Ordner `docs/`.
