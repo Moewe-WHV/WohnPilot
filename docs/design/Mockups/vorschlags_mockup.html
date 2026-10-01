@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MeinMietCockpit - Mockup</title>
+  <style>
+    :root{
+      --bg:#f6f8fb;
+      --panel:#ffffff;
+      --panel-2:#f0f4f8;
+      --text:#162033;
+      --muted:#6b7280;
+      --line:#e5e7eb;
+      --blue:#2f6fed;
+      --blue-2:#eaf1ff;
+      --green:#1f9d68;
+      --green-2:#e9f8f1;
+      --amber:#d18b16;
+      --amber-2:#fff6e4;
+      --red:#d54d4d;
+      --red-2:#fff0f0;
+      --purple:#7b61d1;
+      --shadow:0 12px 32px rgba(18, 35, 64, .08);
+      --radius:18px;
+      --radius-sm:12px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--text);
+      background:var(--bg);
+    }
+
+    button, input, select, textarea{font:inherit}
+    button{cursor:pointer}
+
+    .app{
+      min-height:100vh;
+      display:grid;
+      grid-template-columns:250px 1fr;
+    }
+
+    .sidebar{
+      position:sticky;
+      top:0;
+      height:100vh;
+      background:#0f172a;
+      color:#fff;
+      padding:22px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:0 10px;
+    }
+
+    .logo{
+      width:42px;height:42px;border-radius:12px;
+      display:grid;place-items:center;
+      background:linear-gradient(145deg,#60a5fa,#2563eb);
+      font-weight:800;
+      box-shadow:0 8px 20px rgba(37,99,235,.3);
+    }
+
+    .brand h1{font-size:18px;margin:0}
+    .brand small{display:block;color:#94a3b8;margin-top:2px}
+
+    .nav{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
+    .nav button{
+      border:0;
+      background:transparent;
+      color:#cbd5e1;
+      text-align:left;
+      padding:12px 14px;
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      transition:.18s ease;
+    }
+    .nav button:hover,.nav button.active{
+      background:#1e293b;
+      color:#fff;
+    }
+
+    .nav .badge{
+      margin-left:auto;
+      background:#334155;
+      color:#e2e8f0;
+      border-radius:999px;
+      padding:2px 8px;
+      font-size:12px;
+    }
+
+    .sidebar-card{
+      margin-top:auto;
+      background:#172033;
+      border:1px solid #263247;
+      border-radius:14px;
+      padding:14px;
+      color:#cbd5e1;
+      font-size:13px;
+    }
+    .sidebar-card strong{color:#fff}
+    .sidebar-card button{
+      width:100%;
+      margin-top:10px;
+      border:0;
+      padding:10px 12px;
+      border-radius:9px;
+      background:#2563eb;
+      color:#fff;
+    }
+
+    main{min-width:0}
+    .topbar{
+      height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 28px;
+      background:rgba(255,255,255,.9);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+      position:sticky;
+      top:0;
+      z-index:10;
+    }
+    .topbar .title strong{display:block;font-size:17px}
+    .topbar .title span{font-size:13px;color:var(--muted)}
+    .top-actions{display:flex;align-items:center;gap:10px}
+    .pill{
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:999px;
+      padding:9px 12px;
+      font-size:13px;
+      color:#334155;
+    }
+    .avatar{
+      width:36px;height:36px;border-radius:50%;
+      display:grid;place-items:center;
+      background:#dbeafe;color:#1d4ed8;font-weight:800;
+    }
+
+    .content{padding:26px;max-width:1500px;margin:auto}
+    .view{display:none}
+    .view.active{display:block}
+
+    .hero{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:end;
+      margin-bottom:22px;
+    }
+    .hero h2{margin:0 0 5px;font-size:28px}
+    .hero p{margin:0;color:var(--muted)}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+    .btn{
+      border:0;
+      border-radius:10px;
+      padding:11px 14px;
+      font-weight:700;
+    }
+    .btn-primary{background:var(--blue);color:#fff}
+    .btn-secondary{background:#fff;border:1px solid var(--line);color:#334155}
+    .btn-danger{background:var(--red);color:#fff}
+
+    .grid{display:grid;gap:18px}
+    .grid-4{grid-template-columns:repeat(4, minmax(0,1fr))}
+    .grid-3{grid-template-columns:repeat(3, minmax(0,1fr))}
+    .grid-2{grid-template-columns:repeat(2, minmax(0,1fr))}
+
+    .card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius);
+      padding:18px;
+    }
+    .card h3{margin:0 0 6px;font-size:16px}
+    .card .sub{font-size:13px;color:var(--muted)}
+
+    .metric{
+    }
+    .metric .label{font-size:13px;color:var(--muted)}
+    .metric .value{font-size:28px;font-weight:800;margin-top:8px}
+    .metric .trend{margin-top:8px;font-size:12px}
+
+    .status{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      border-radius:999px;
+      padding:6px 9px;
+      font-size:12px;
+      font-weight:700;
+    }
+    .status.green{background:var(--green-2);color:var(--green)}
+    .status.amber{background:var(--amber-2);color:var(--amber)}
+    .status.red{background:var(--red-2);color:var(--red)}
+    .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+
+    .section-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin:28px 0 12px;
+    }
+    .section-title h3{margin:0;font-size:18px}
+    .section-title span{font-size:13px;color:var(--muted)}
+
+    .progress{
+      height:10px;background:#eef2f7;border-radius:999px;overflow:hidden;margin-top:12px
+    }
+    .progress > div{height:100%;border-radius:inherit;background:var(--blue)}
+    .progress.green > div{background:var(--green)}
+    .progress.amber > div{background:var(--amber)}
+    .progress.red > div{background:var(--red)}
+
+    .chart{
+      height:230px;
+      display:flex;
+      align-items:end;
+      gap:10px;
+      padding:16px 8px 4px;
+      border-top:1px solid #eef1f4;
+      margin-top:14px;
+    }
+    .bar{
+      flex:1;
+      min-width:18px;
+      background:linear-gradient(180deg,#60a5fa,#2563eb);
+      border-radius:7px 7px 3px 3px;
+      position:relative;
+    }
+    .bar span{
+      position:absolute;bottom:-24px;left:50%;transform:translateX(-50%);
+      color:var(--muted);font-size:11px
+    }
+
+    .deadline-list,.doc-list,.cost-list{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+    .deadline,.doc,.cost-row{
+      display:flex;align-items:center;gap:12px;
+      padding:12px;border-radius:12px;background:#f8fafc;border:1px solid #eef2f7
+    }
+    .deadline .datebox{
+      width:48px;height:48px;border-radius:10px;background:#fff;
+      border:1px solid var(--line);display:grid;place-items:center;font-weight:800;line-height:1.1
+    }
+    .deadline .datebox small{font-size:10px;color:var(--muted);font-weight:600}
+    .deadline .meta,.doc .meta{flex:1}
+    .deadline .meta strong,.doc .meta strong{display:block;font-size:14px}
+    .deadline .meta span,.doc .meta span{font-size:12px;color:var(--muted)}
+    .deadline .days{font-size:12px;font-weight:800;color:var(--amber)}
+
+    .board{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(230px,1fr));
+      gap:14px;
+      overflow-x:auto;
+      padding-bottom:6px;
+    }
+    .column{
+      background:#edf2f7;
+      border-radius:14px;
+      padding:12px;
+      min-height:360px;
+    }
+    .column-head{
+      display:flex;justify-content:space-between;align-items:center;
+      margin-bottom:10px;
+      font-weight:800;
+    }
+    .ticket{
+      background:#fff;
+      border-radius:12px;
+      border:1px solid #e5e7eb;
+      padding:13px;
+      margin-bottom:10px;
+      box-shadow:0 4px 14px rgba(15,23,42,.05);
+    }
+    .ticket strong{display:block;margin-bottom:8px}
+    .ticket p{font-size:12px;color:var(--muted);margin:0 0 10px}
+    .ticket .thumb{
+      height:80px;border-radius:9px;
+      background:linear-gradient(135deg,#cbd5e1,#f8fafc);
+      display:grid;place-items:center;color:#64748b;font-size:12px
+    }
+    .ticket .row{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:12px 10px;text-align:left;border-bottom:1px solid #eef2f7;font-size:13px}
+    th{color:#64748b;font-weight:700;background:#fafbfd}
+    td strong{font-weight:700}
+
+    .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    label{display:block;font-size:12px;color:#64748b;margin-bottom:6px;font-weight:700}
+    input,select,textarea{
+      width:100%;border:1px solid #dbe2ea;border-radius:10px;padding:11px 12px;background:#fff;color:#111827
+    }
+    textarea{min-height:100px;resize:vertical}
+    .input-help{font-size:11px;color:#94a3b8;margin-top:5px}
+
+    .mobile-meter{
+      max-width:430px;
+      margin:0 auto;
+      background:#0b1220;
+      color:#fff;
+      border-radius:24px;
+      padding:22px;
+      box-shadow:0 20px 50px rgba(15,23,42,.25)
+    }
+    .mobile-meter .muted{color:#94a3b8}
+    .display{
+      margin:18px 0;
+      background:#111827;
+      border:1px solid #334155;
+      border-radius:16px;
+      padding:20px;
+      text-align:right;
+      font-size:38px;
+      letter-spacing:2px;
+      font-weight:800
+    }
+    .num-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .num-grid button{
+      border:0;border-radius:14px;background:#1f2937;color:#fff;
+      font-size:24px;padding:18px 0
+    }
+    .num-grid button:hover{background:#2b3648}
+    .save-meter{
+      width:100%;margin-top:12px;border:0;border-radius:14px;padding:15px;background:#22c55e;color:#052e16;font-weight:900
+    }
+
+    .alert{
+      border-radius:12px;
+      padding:13px 14px;
+      display:flex;gap:10px;align-items:flex-start
+    }
+    .alert.red{background:var(--red-2);color:#8e2e2e;border:1px solid #ffd3d3}
+    .alert.amber{background:var(--amber-2);color:#8a5b08;border:1px solid #ffe4a8}
+    .alert.green{background:var(--green-2);color:#126745;border:1px solid #c8eddd}
+    .alert strong{display:block;margin-bottom:3px}
+    .alert span{font-size:13px}
+
+    .modal{
+      position:fixed;inset:0;background:rgba(15,23,42,.55);
+      display:none;place-items:center;padding:20px;z-index:50
+    }
+    .modal.open{display:grid}
+    .modal-card{
+      width:min(620px,100%);
+      max-height:88vh;overflow:auto;
+      background:#fff;border-radius:18px;padding:20px
+    }
+    .modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+    .icon-btn{border:0;background:#f1f5f9;border-radius:9px;padding:8px 10px}
+    .toast{
+      position:fixed;right:24px;bottom:24px;
+      background:#0f172a;color:#fff;padding:12px 15px;border-radius:10px;
+      box-shadow:0 12px 28px rgba(0,0,0,.2);
+      opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s;z-index:70
+    }
+    .toast.show{opacity:1;transform:translateY(0)}
+
+    @media (max-width:1100px){
+      .grid-4{grid-template-columns:repeat(2,1fr)}
+      .grid-3{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+    }
+    @media (max-width:820px){
+      .app{grid-template-columns:1fr}
+      .sidebar{
+        position:fixed;left:0;right:0;bottom:0;top:auto;height:auto;
+        z-index:40;padding:8px 10px;border-top:1px solid #263247
+      }
+      .brand,.sidebar-card{display:none}
+      .nav{flex-direction:row;overflow:auto}
+      .nav button{min-width:74px;justify-content:center;flex-direction:column;gap:3px;padding:8px;font-size:11px}
+      .nav button .nav-label{display:block}
+      .nav .badge{display:none}
+      .topbar{padding:0 16px}
+      .content{padding:18px 14px 100px}
+      .hero{align-items:flex-start;flex-direction:column}
+      .grid-4{grid-template-columns:1fr}
+      .form-grid{grid-template-columns:1fr}
+      .board{grid-template-columns:repeat(4,280px)}
+      .top-actions .pill{display:none}
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">MM</div>
+      <div>
+        <h1>MeinMietCockpit</h1>
+        <small>Mieten. Verstehen. Belegen.</small>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <button class="active" data-view="dashboard"><span class="nav-label">Cockpit</span></button>
+      <button data-view="costs"><span class="nav-label">Kosten</span></button>
+      <button data-view="meters"><span class="nav-label">Verbrauch</span></button>
+      <button data-view="defects"><span class="nav-label">Mängel</span><span class="badge">3</span></button>
+      <button data-view="deadlines"><span class="nav-label">Fristen</span></button>
+      <button data-view="documents"><span class="nav-label">Dokumente</span></button>
+      <button data-view="basement"><span class="nav-label">Keller-Modus</span></button>
+    </nav>
+
+    <div class="sidebar-card">
+      <strong>Demo-Wohnung</strong><br>
+      Lindenstraße 18, 2. OG<br>
+      <span style="color:#94a3b8">Mietbeginn: 01.03.2024</span>
+      <button onclick="showToast('Demo-Daten wurden zurückgesetzt.')">Demo zurücksetzen</button>
+    </div>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <div class="title">
+        <strong id="pageTitle">Cockpit</strong>
+        <span>Stand: 28.09.2026</span>
+      </div>
+      <div class="top-actions">
+        <button class="pill" onclick="openModal('meterModal')">+ Zählerstand</button>
+        <button class="pill" onclick="openModal('defectModal')">+ Mangel</button>
+        <div class="avatar">HM</div>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <section class="view active" id="dashboard">
+        <div class="hero">
+          <div>
+            <h2>Guten Abend, User</h2>
+            <p>Hier siehst du Kosten, Verbrauch, Mängel und Fristen deiner Wohnung auf einen Blick.</p>
+          </div>
+          <div class="hero-actions">
+            <button class="btn btn-secondary" onclick="openModal('meterModal')">Zählerstand erfassen</button>
+            <button class="btn btn-primary" onclick="openModal('defectModal')">Mangel melden</button>
+          </div>
+        </div>
+
+        <div class="grid grid-4">
+          <div class="card metric">
+            <div class="label">Monatliche Gesamtmiete</div>
+            <div class="value">1.084,00 €</div>
+            <div class="trend">+ 2,8 % seit 01.07.2026</div>
+          </div>
+          <div class="card metric">
+            <div class="label">Nebenkosten-Vorauszahlung</div>
+            <div class="value">265,00 €</div>
+            <div class="trend">davon 95,00 € Heizung</div>
+          </div>
+          <div class="card metric">
+            <div class="label">Prognose Jahresabrechnung</div>
+            <div class="value" style="color:var(--red)">+ 238 €</div>
+            <div class="trend">mögliche Nachzahlung bei aktuellem Trend</div>
+          </div>
+          <div class="card metric">
+            <div class="label">Nächste Frist</div>
+            <div class="value">16 Tage</div>
+            <div class="trend">Mängelbeseitigung Bad</div>
+          </div>
+        </div>
+
+        <div class="section-title">
+          <h3>Verbrauchsstatus</h3>
+          <span>Vergleich mit Budget und Vorjahreswerten</span>
+        </div>
+        <div class="grid grid-3">
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;gap:12px">
+              <div><h3>Heizung / Gas</h3><div class="sub">Prognose 2026</div></div>
+              <span class="status red"><span class="dot"></span> Über Budget</span>
+            </div>
+            <div style="font-size:28px;font-weight:800;margin-top:16px">9.840 kWh</div>
+            <div class="sub">Budget: 8.900 kWh</div>
+            <div class="progress red"><div style="width:88%"></div></div>
+          </div>
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;gap:12px">
+              <div><h3>Strom</h3><div class="sub">Prognose 2026</div></div>
+              <span class="status green"><span class="dot"></span> Im Budget</span>
+            </div>
+            <div style="font-size:28px;font-weight:800;margin-top:16px">2.420 kWh</div>
+            <div class="sub">Budget: 2.650 kWh</div>
+            <div class="progress green"><div style="width:72%"></div></div>
+          </div>
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;gap:12px">
+              <div><h3>Warmwasser</h3><div class="sub">Prognose 2026</div></div>
+              <span class="status amber"><span class="dot"></span> Beobachten</span>
+            </div>
+            <div style="font-size:28px;font-weight:800;margin-top:16px">33,8 m³</div>
+            <div class="sub">Budget: 35,0 m³</div>
+            <div class="progress amber"><div style="width:80%"></div></div>
+          </div>
+        </div>
+
+        <div class="grid grid-2" style="margin-top:18px">
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div><h3>Verbrauchsentwicklung Strom</h3><div class="sub">Monatliche Zählerdifferenz in kWh</div></div>
+              <span class="status green"><span class="dot"></span> stabil</span>
+            </div>
+            <div class="chart">
+              <div class="bar" style="height:48%"><span>Apr</span></div>
+              <div class="bar" style="height:54%"><span>Mai</span></div>
+              <div class="bar" style="height:43%"><span>Jun</span></div>
+              <div class="bar" style="height:51%"><span>Jul</span></div>
+              <div class="bar" style="height:62%"><span>Aug</span></div>
+              <div class="bar" style="height:57%"><span>Sep</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Wichtige Fristen</h3>
+            <div class="sub">Automatisch aus Vertrag, Abrechnung und Mängeln berechnet</div>
+            <div class="deadline-list">
+              <div class="deadline">
+                <div class="datebox">14<small>OKT</small></div>
+                <div class="meta"><strong>Frist Mängelbeseitigung</strong><span>Feuchtigkeit / Schimmel im Bad</span></div>
+                <div class="days">16 Tage</div>
+              </div>
+              <div class="deadline">
+                <div class="datebox">31<small>DEZ</small></div>
+                <div class="meta"><strong>Abrechnungsfrist Vermieter</strong><span>Nebenkostenabrechnung 2025</span></div>
+                <div class="days">94 Tage</div>
+              </div>
+              <div class="deadline">
+                <div class="datebox">12<small>FEB</small></div>
+                <div class="meta"><strong>Einwendungsfrist</strong><span>Abrechnung vom 12.02.2026</span></div>
+                <div class="days">137 Tage</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-title">
+          <h3>Offene Mängel</h3>
+          <button class="btn btn-secondary" onclick="switchView('defects')">Zum Mängel-Board</button>
+        </div>
+        <div class="grid grid-3">
+          <div class="card">
+            <span class="status red"><span class="dot"></span> Frist läuft</span>
+            <h3 style="margin-top:12px">Schimmel im Bad</h3>
+            <div class="sub">Gemeldet am 30.09.2026 · Frist bis 14.10.2026</div>
+          </div>
+          <div class="card">
+            <span class="status amber"><span class="dot"></span> Termin geplant</span>
+            <h3 style="margin-top:12px">Heizung klopft nachts</h3>
+            <div class="sub">Handwerkertermin: 05.10.2026</div>
+          </div>
+          <div class="card">
+            <span class="status green"><span class="dot"></span> Behoben</span>
+            <h3 style="margin-top:12px">Fenstergriff Küche locker</h3>
+            <div class="sub">Behoben am 22.09.2026</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="costs">
+        <div class="hero">
+          <div>
+            <h2>Vertrag & Kostenstruktur</h2>
+            <p>Alle regelmäßigen Mietkosten, Kaution und Anpassungen nachvollziehbar dokumentiert.</p>
+          </div>
+          <button class="btn btn-primary" onclick="showToast('Änderungsdialog wäre hier angebunden.')">Kosten bearbeiten</button>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Monatliche Kosten</h3>
+            <div class="cost-list">
+              <div class="cost-row"><span style="flex:1">Kaltmiete</span><strong>760,00 €</strong></div>
+              <div class="cost-row"><span style="flex:1">Nebenkosten</span><strong>170,00 €</strong></div>
+              <div class="cost-row"><span style="flex:1">Heizung</span><strong>95,00 €</strong></div>
+              <div class="cost-row"><span style="flex:1">Stellplatz</span><strong>59,00 €</strong></div>
+              <div class="cost-row" style="background:#eef4ff"><span style="flex:1;font-weight:800">Gesamt</span><strong>1.084,00 €</strong></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Kautionsstatus</h3>
+            <div style="font-size:30px;font-weight:800;margin-top:18px">2.280,00 €</div>
+            <div class="sub">Form: Mietkautionskonto</div>
+            <div style="margin-top:16px"><span class="status green"><span class="dot"></span> Nachweis vorhanden</span></div>
+            <button class="btn btn-secondary" style="margin-top:18px" onclick="switchView('documents')">Nachweis öffnen</button>
+          </div>
+        </div>
+
+        <div class="section-title"><h3>Mieterhöhungs-Historie</h3></div>
+        <div class="card" style="padding:0;overflow:auto">
+          <table>
+            <thead><tr><th>Gültig ab</th><th>Vorher</th><th>Neu</th><th>Steigerung</th><th>Grund</th></tr></thead>
+            <tbody>
+              <tr><td>01.07.2026</td><td>739,00 €</td><td><strong>760,00 €</strong></td><td>+2,84 %</td><td>Mietanpassung</td></tr>
+              <tr><td>01.03.2024</td><td>-</td><td><strong>739,00 €</strong></td><td>-</td><td>Mietbeginn</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="view" id="meters">
+        <div class="hero">
+          <div>
+            <h2>Verbrauch & Abrechnungs-Check</h2>
+            <p>Zählerstände dokumentieren, Trends erkennen und Abrechnungen mit eigenen Daten vergleichen.</p>
+          </div>
+          <button class="btn btn-primary" onclick="openModal('meterModal')">+ Zählerstand</button>
+        </div>
+
+        <div class="alert red">
+          <div>⚠️</div>
+          <div><strong>Mögliche Heizkosten-Nachzahlung: ca. 238 €</strong><span>Der aktuelle Verbrauch liegt rund 10,6 % über deinem Jahresbudget.</span></div>
+        </div>
+
+        <div class="section-title"><h3>Letzte Zählerstände</h3></div>
+        <div class="card" style="padding:0;overflow:auto">
+          <table id="meterTable">
+            <thead><tr><th>Typ</th><th>Datum</th><th>Zählerstand</th><th>Verbrauch seit letzter Messung</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Strom</td><td>28.09.2026</td><td><strong>18.482 kWh</strong></td><td>181 kWh</td><td><span class="status green"><span class="dot"></span> normal</span></td></tr>
+              <tr><td>Warmwasser</td><td>28.09.2026</td><td><strong>126,8 m³</strong></td><td>2,7 m³</td><td><span class="status amber"><span class="dot"></span> leicht erhöht</span></td></tr>
+              <tr><td>Gas</td><td>28.09.2026</td><td><strong>7.983 m³</strong></td><td>84 m³</td><td><span class="status red"><span class="dot"></span> erhöht</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-title"><h3>Abrechnungs-Prüfer</h3></div>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Abrechnung 2025</h3>
+            <div class="sub">Hausverwaltung Müller & Partner · erhalten am 12.02.2026</div>
+            <div class="cost-list">
+              <div class="cost-row"><span style="flex:1">Gesamtkosten laut Abrechnung</span><strong>3.180,40 €</strong></div>
+              <div class="cost-row"><span style="flex:1">Vorauszahlungen</span><strong>2.940,00 €</strong></div>
+              <div class="cost-row"><span style="flex:1">Nachzahlung</span><strong style="color:var(--red)">240,40 €</strong></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Abgleich eigener Daten</h3>
+            <div class="deadline-list">
+              <div class="deadline">
+                <div class="meta"><strong>Strom-Endstand</strong><span>Eigene Messung: 17.932 kWh · Abrechnung: 17.932 kWh</span></div>
+                <span class="status green">passt</span>
+              </div>
+              <div class="deadline">
+                <div class="meta"><strong>Warmwasser-Endstand</strong><span>Eigene Messung: 118,4 m³ · Abrechnung: 121,0 m³</span></div>
+                <span class="status red">+2,6 m³</span>
+              </div>
+            </div>
+            <button class="btn btn-secondary" style="margin-top:14px" onclick="showToast('Prüfbericht wurde als Demo markiert.')">Prüfbericht öffnen</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="defects">
+        <div class="hero">
+          <div>
+            <h2>Mängel-Board</h2>
+            <p>Dokumentiere Schäden, Fristen und Reparaturstatus wie in einem Ticket-System.</p>
+          </div>
+          <button class="btn btn-primary" onclick="openModal('defectModal')">+ Neuer Mangel</button>
+        </div>
+
+        <div class="board" id="defectBoard">
+          <div class="column">
+            <div class="column-head"><span>Neu</span><span>1</span></div>
+            <div class="ticket">
+              <strong>Wasserhahn tropft</strong>
+              <p>Küche · niedrig · heute erfasst</p>
+              <div class="thumb">Foto-Vorschau</div>
+              <div class="row"><span class="status amber">offen</span><span>⋯</span></div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="column-head"><span>Gemeldet</span><span>1</span></div>
+            <div class="ticket">
+              <strong>Schimmel im Bad</strong>
+              <p>Bad · hoch · gemeldet am 30.09.2026</p>
+              <div class="thumb">Dokumentationsfoto</div>
+              <div class="row"><span class="status red">Frist bis 14.10.</span><button class="btn btn-secondary" style="padding:7px 9px" onclick="showToast('PDF-Mängelrüge generiert (Demo).')">PDF</button></div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="column-head"><span>Termin</span><span>1</span></div>
+            <div class="ticket">
+              <strong>Heizung klopft nachts</strong>
+              <p>Schlafzimmer · mittel</p>
+              <div class="row"><span class="status amber">05.10.2026</span><span>08:00-10:00</span></div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="column-head"><span>Behoben</span><span>1</span></div>
+            <div class="ticket">
+              <strong>Fenstergriff locker</strong>
+              <p>Küche · behoben am 22.09.2026</p>
+              <div class="row"><span class="status green">erledigt</span><span>✓</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="deadlines">
+        <div class="hero">
+          <div>
+            <h2>Fristenwächter</h2>
+            <p>Automatische Erinnerungen für Abrechnung, Einwendungen, Kündigung und Mängelbeseitigung.</p>
+          </div>
+          <button class="btn btn-primary" onclick="showToast('Neue Frist angelegt (Demo).')">+ Frist anlegen</button>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="label sub">Nächste Frist</div>
+            <div style="font-size:32px;font-weight:800;margin-top:8px">14.10.2026</div>
+            <p style="margin-bottom:0">Mängelbeseitigung Bad</p>
+          </div>
+          <div class="card">
+            <div class="label sub">Abrechnungsfrist Vermieter</div>
+            <div style="font-size:32px;font-weight:800;margin-top:8px">31.12.2026</div>
+            <p style="margin-bottom:0">Abrechnungsjahr 2025</p>
+          </div>
+          <div class="card">
+            <div class="label sub">Ordentliche Kündigung</div>
+            <div style="font-size:32px;font-weight:800;margin-top:8px">31.12.2026</div>
+            <p style="margin-bottom:0">bei Zugang bis 05.10.2026</p>
+          </div>
+        </div>
+
+        <div class="section-title"><h3>Alle Fristen</h3></div>
+        <div class="card" style="padding:0;overflow:auto">
+          <table>
+            <thead><tr><th>Frist</th><th>Art</th><th>Bezug</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td><strong>14.10.2026</strong></td><td>Mängelbeseitigung</td><td>Schimmel im Bad</td><td><span class="status red">16 Tage</span></td></tr>
+              <tr><td><strong>31.12.2026</strong></td><td>Abrechnungsfrist Vermieter</td><td>Nebenkosten 2025</td><td><span class="status amber">94 Tage</span></td></tr>
+              <tr><td><strong>12.02.2027</strong></td><td>Einwendungsfrist</td><td>Abrechnung 2025</td><td><span class="status green">137 Tage</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="alert amber" style="margin-top:18px">
+          <div>ℹ️</div>
+          <div><strong>Hinweis</strong><span>Die angezeigten Fristen dienen im Mockup nur der Produktdarstellung und ersetzen keine Rechtsberatung.</span></div>
+        </div>
+      </section>
+
+      <section class="view" id="documents">
+        <div class="hero">
+          <div>
+            <h2>Dokumentensafe</h2>
+            <p>Verträge, Nachweise, Abrechnungen und Schriftverkehr zentral hinterlegen.</p>
+          </div>
+          <button class="btn btn-primary" onclick="showToast('Datei-Upload geöffnet (Demo).')">+ Dokument hochladen</button>
+        </div>
+
+        <div class="card" style="margin-bottom:18px">
+          <input id="docSearch" placeholder="Dokumente durchsuchen, z. B. Mietvertrag, Kaution, Nebenkosten..." oninput="filterDocs()" />
+        </div>
+
+        <div class="card">
+          <div class="doc-list" id="docList">
+            <div class="doc" data-keywords="mietvertrag vertrag"><div style="font-size:28px">📄</div><div class="meta"><strong>Mietvertrag_2024.pdf</strong><span>Mietvertrag · 2,4 MB · 01.03.2024</span></div><button class="btn btn-secondary">Öffnen</button></div>
+            <div class="doc" data-keywords="kaution sparkonto nachweis"><div style="font-size:28px">📄</div><div class="meta"><strong>Kautionsnachweis.pdf</strong><span>Kaution · 740 KB · 02.03.2024</span></div><button class="btn btn-secondary">Öffnen</button></div>
+            <div class="doc" data-keywords="nebenkosten abrechnung 2025"><div style="font-size:28px">📄</div><div class="meta"><strong>Nebenkostenabrechnung_2025.pdf</strong><span>Abrechnung · 1,8 MB · 12.02.2026</span></div><button class="btn btn-secondary">Öffnen</button></div>
+            <div class="doc" data-keywords="übergabe protokoll wohnung"><div style="font-size:28px">📄</div><div class="meta"><strong>Übergabeprotokoll.pdf</strong><span>Wohnungsübergabe · 1,1 MB · 01.03.2024</span></div><button class="btn btn-secondary">Öffnen</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="basement">
+        <div class="hero">
+          <div>
+            <h2>Keller-Modus</h2>
+            <p>Reduzierte, touchfreundliche Eingabe für schnelle Zählerablesung auf dem Smartphone.</p>
+          </div>
+        </div>
+
+        <div class="mobile-meter">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <strong style="font-size:18px">Stromzähler</strong>
+              <div class="muted" style="font-size:12px">Zähler-Nr. ST-48152</div>
+            </div>
+            <span style="font-size:24px">⚡</span>
+          </div>
+          <div class="display" id="meterDisplay">18482</div>
+          <div class="num-grid">
+            <button onclick="pressNum('1')">1</button><button onclick="pressNum('2')">2</button><button onclick="pressNum('3')">3</button>
+            <button onclick="pressNum('4')">4</button><button onclick="pressNum('5')">5</button><button onclick="pressNum('6')">6</button>
+            <button onclick="pressNum('7')">7</button><button onclick="pressNum('8')">8</button><button onclick="pressNum('9')">9</button>
+            <button onclick="pressNum('⌫')">⌫</button><button onclick="pressNum('0')">0</button><button onclick="pressNum(',')">,</button>
+          </div>
+          <button class="save-meter" onclick="showToast('Zählerstand lokal gespeichert. Synchronisation erfolgt bei Netzverbindung.')">Zählerstand speichern</button>
+          <div class="muted" style="font-size:11px;text-align:center;margin-top:10px">Offline-fähige Demo-Ansicht</div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="modal" id="meterModal">
+  <div class="modal-card">
+    <div class="modal-head"><h3 style="margin:0">Zählerstand erfassen</h3><button class="icon-btn" onclick="closeModal('meterModal')">✕</button></div>
+    <div class="form-grid">
+      <div><label>Zählertyp</label><select id="meterType"><option>Strom</option><option>Kaltwasser</option><option>Warmwasser</option><option>Gas / Wärme</option></select></div>
+      <div><label>Datum</label><input id="meterDate" type="date" value="2026-09-28"></div>
+      <div><label>Zählerstand</label><input id="meterValue" placeholder="z. B. 18482"></div>
+      <div><label>Einheit</label><select><option>kWh</option><option>m³</option></select></div>
+    </div>
+    <div style="margin-top:14px"><label>Notiz</label><textarea placeholder="Optionaler Hinweis, z. B. Foto vorhanden oder Zwischenablesung."></textarea></div>
+    <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:18px">
+      <button class="btn btn-secondary" onclick="closeModal('meterModal')">Abbrechen</button>
+      <button class="btn btn-primary" onclick="addMeter()">Speichern</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="defectModal">
+  <div class="modal-card">
+    <div class="modal-head"><h3 style="margin:0">Mangel erfassen</h3><button class="icon-btn" onclick="closeModal('defectModal')">✕</button></div>
+    <div class="form-grid">
+      <div><label>Titel</label><input id="defectTitle" placeholder="z. B. Schimmel am Fenster"></div>
+      <div><label>Raum</label><select id="defectRoom"><option>Bad</option><option>Küche</option><option>Wohnzimmer</option><option>Schlafzimmer</option><option>Flur</option><option>Keller</option></select></div>
+      <div><label>Schweregrad</label><select id="defectSeverity"><option>Niedrig</option><option>Mittel</option><option>Hoch</option></select></div>
+      <div><label>Foto / Beleg</label><input type="file"></div>
+    </div>
+    <div style="margin-top:14px"><label>Beschreibung</label><textarea id="defectDesc" placeholder="Was ist passiert? Seit wann besteht der Mangel?"></textarea></div>
+    <div class="input-help">Im echten Produkt würde der Upload dokumentiert und dem Vorgang revisionssicher zugeordnet.</div>
+    <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:18px">
+      <button class="btn btn-secondary" onclick="closeModal('defectModal')">Abbrechen</button>
+      <button class="btn btn-primary" onclick="addDefect()">Mangel speichern</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Gespeichert.</div>
+
+<script>
+  const titles = {
+    dashboard:'Cockpit',
+    costs:'Kosten & Vertrag',
+    meters:'Verbrauch',
+    defects:'Mängel-Board',
+    deadlines:'Fristenwächter',
+    documents:'Dokumentensafe',
+    basement:'Keller-Modus'
+  };
+
+  document.querySelectorAll('.nav button').forEach(btn=>{
+    btn.addEventListener('click', ()=> switchView(btn.dataset.view));
+  });
+
+  function switchView(id){
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+    document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const active = document.querySelector(`.nav button[data-view="${id}"]`);
+    if(active) active.classList.add('active');
+    document.getElementById('pageTitle').textContent = titles[id] || 'MeinMietCockpit';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  function openModal(id){document.getElementById(id).classList.add('open')}
+  function closeModal(id){document.getElementById(id).classList.remove('open')}
+
+  function showToast(msg){
+    const t=document.getElementById('toast');
+    t.textContent=msg;t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),2500);
+  }
+
+  function addMeter(){
+    const type=document.getElementById('meterType').value;
+    const date=document.getElementById('meterDate').value || '2026-09-28';
+    const val=document.getElementById('meterValue').value || '18.482';
+    const tbody=document.querySelector('#meterTable tbody');
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${type}</td><td>${date.split('-').reverse().join('.')}</td><td><strong>${val}</strong></td><td>neu erfasst</td><td><span class="status green"><span class="dot"></span> gespeichert</span></td>`;
+    tbody.prepend(tr);
+    closeModal('meterModal');showToast('Zählerstand gespeichert.');
+  }
+
+  function addDefect(){
+    const title=document.getElementById('defectTitle').value || 'Neuer Mangel';
+    const room=document.getElementById('defectRoom').value;
+    const sev=document.getElementById('defectSeverity').value;
+    const firstCol=document.querySelector('#defectBoard .column');
+    const ticket=document.createElement('div');
+    ticket.className='ticket';
+    ticket.innerHTML=`<strong>${title}</strong><p>${room} · ${sev.toLowerCase()} · gerade erfasst</p><div class="thumb">Foto / Beleg</div><div class="row"><span class="status amber">neu</span><span>⋯</span></div>`;
+    firstCol.appendChild(ticket);
+    const count=firstCol.querySelectorAll('.ticket').length;
+    firstCol.querySelector('.column-head span:last-child').textContent=count;
+    closeModal('defectModal');showToast('Mangel wurde dem Board hinzugefügt.');
+  }
+
+  function filterDocs(){
+    const q=document.getElementById('docSearch').value.toLowerCase().trim();
+    document.querySelectorAll('#docList .doc').forEach(doc=>{
+      const hay=(doc.innerText+' '+doc.dataset.keywords).toLowerCase();
+      doc.style.display=hay.includes(q)?'flex':'none';
+    });
+  }
+
+  let basementValue='18482';
+  function pressNum(v){
+    if(v==='⌫') basementValue=basementValue.slice(0,-1);
+    else if(v===',' && basementValue.includes(',')) return;
+    else basementValue+=v;
+    document.getElementById('meterDisplay').textContent=basementValue || '0';
+  }
+
+  document.querySelectorAll('.modal').forEach(m=>{
+    m.addEventListener('click', e=>{ if(e.target===m) m.classList.remove('open'); });
+  });
+</script>
+</body>
+</html>
