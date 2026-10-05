@@ -81,4 +81,4 @@ Jeder schreibt etwas zu jeder Spalte:
 |---|---|---|---|---|
 | 1 | | | | |
 
-Wichtige Entscheidungen tragen wir zusätzlich ins Entscheidungslog ein (siehe [dokumentation.md](../readme/dokumentation.md)).
+Wichtige Entscheidungen tragen wir zusätzlich ins Entscheidungslog ein (siehe [dokumentation.md](../projekt/dokumentation.md)).

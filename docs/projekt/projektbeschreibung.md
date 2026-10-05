@@ -39,23 +39,26 @@ Die genauen Texte stehen in [user-stories.md](user-stories.md). Das Use-Case-Dia
 ## Womit bauen wir?
 | Was | Womit | Warum |
 |---|---|---|
-| Programmiersprache | Python | Haben wir im Unterricht |
-| Web-Framework | Django | Bringt Anmeldung, Datenbank und Admin schon mit. Einige im Team kennen es |
+| Programmiersprache | Python (Backend), TypeScript (Angular) | Python haben wir im Unterricht, TypeScript lernen wir mit Angular dazu |
+| Backend-Framework | Django mit Django REST Framework | Bringt Anmeldung, Datenbank und Admin schon mit. Das REST Framework macht daraus die Schnittstelle (API) für Angular. Einige im Team kennen Django |
 | Datenbank | SQLite | Läuft ohne extra Server, ist eine einzelne Datei. Die SQL-Grundlagen sind wie bei MariaDB. Später kann man die Datenbank wechseln |
-| Aussehen | HTML und CSS | Reicht für den Anfang |
+| Oberfläche | Angular (TypeScript, HTML, CSS) | Mehrere im Team wollen es einsetzen, in Firmen weit verbreitet. Für die meisten neu, deshalb gibt es eine Einführung |
 | Zusammenarbeit | Git und GitHub | Branches, Pull Requests, Board |
 | Vorgehen | Scrum, 5 Sprints à 1 Woche | Jede Woche ist etwas Fertiges zu sehen |
 
+**So arbeiten die Teile zusammen:** Angular ist der Tresen im Laden, an dem der Mieter etwas anfragt („Zeig mir meine Zahlungen“). Django ist das Lager dahinter: Es prüft, wer fragt, und gibt nur die Daten dieses Mieters heraus. Dazwischen liegt die API, über die beide in JSON-Nachrichten sprechen. Die Liste der Adressen steht in [api.md](../design/api.md).
+
 ## Wie könnte es weitergehen? (Ausbaustufen)
 - **Stufe 1 (5 Wochen):** Mieterportal mit den 10 Stories, Hausverwaltung über den Admin-Bereich.
-- **Stufe 2:** Eigener Bereich für die Hausverwaltung: Nebenkostenabrechnung erstellen, Zahlungsstatus ändern, Meldungen bearbeiten, Dokumente hochladen (steht schon im Use-Case-Diagramm).
+- **Stufe 2:** Eigener Bereich für die Hausverwaltung: Nebenkostenabrechnung erstellen, Zahlungsstatus ändern, Meldungen bearbeiten, Dokumente hochladen (steht schon im Use-Case-Diagramm). Gebaut als weitere Seiten in Angular.
 - **Stufe 3:** Komfort: E-Mail-Benachrichtigungen, Suche und Filter, Diagramme zu den Kosten, mehrere Häuser.
 - **Stufe 4:** Betrieb wie im Unternehmen: andere Datenbank (z. B. MariaDB), automatische Tests bei GitHub, Veröffentlichung auf einem Server.
 
 ## Was lernen wir dabei?
 | Fach | Wo es vorkommt |
 |---|---|
-| Python | ganzes Projekt |
+| Python | Backend (Django, API) |
+| Angular / TypeScript | Oberfläche und Anfragen an die API. Neu, ergänzt den Unterricht |
 | SQL | Tabellen, Beziehungen, Abfragen (über Django) |
 | Datenschutz | Mieterdaten sind persönlich: jeder sieht nur seine eigenen Daten, nur Testdaten |
 | PQSM / Qualität | Tests, Code-Review, „Fertig"-Liste |
@@ -63,7 +66,8 @@ Die genauen Texte stehen in [user-stories.md](user-stories.md). Das Use-Case-Dia
 | WiSo | Teamarbeit, Rollen, Planung |
 
 ## Woran merken wir, dass es geklappt hat? (Ziel am 03.11.2026)
-- Ein Mieter kann sich anmelden und alle 10 Stories nutzen.
+- Ein Mieter kann sich in der Angular-Oberfläche anmelden und alle 10 Stories nutzen.
 - Der Mieter sieht **nie** Daten von anderen Mietern.
 - Alles ist in GitHub und dokumentiert. Ein neuer Kollege könnte in einer Stunde starten.
 - Es gibt Tests, die grün sind.
+- Backend und Frontend starten mit den Befehlen aus dem README.

@@ -33,7 +33,7 @@ Jeder Hut ist eine **Verantwortung**, kein Chefposten. Wer einen Hut trägt, pro
 | **Test-Wart** | Zeigt allen, wie man Tests schreibt. Prüft, dass die Tests vor dem Merge grün sind. |
 | **Datenbank-Wart** | Kennt die Tabellen (Models). Änderungen an Tabellen laufen über ihn, damit es keine Konflikte gibt. |
 | **Datenschutz-Wart** | Prüft: Sieht jeder Mieter nur seine eigenen Daten? Sind nur Testdaten drin? Liegen keine Passwörter im Code? |
-| **UI-Wart** | Achtet auf ein einheitliches Aussehen (Layout und CSS). |
+| **UI-Wart** | Achtet auf ein einheitliches Aussehen (Layout, Angular-Komponenten und CSS). |
 
 Wir sind acht Entwickler und haben sechs Hüte. Zwei Leute haben keinen Hut oder teilen sich einen. Das ist okay, dafür sind sie die ersten, die bei Bedarf einspringen (Stellvertreter).
 
@@ -42,6 +42,7 @@ Wir sind acht Entwickler und haben sechs Hüte. Zwei Leute haben keinen Hut oder
 2. Wir arbeiten zu zweit und wechseln beim Tippen alle 25 Minuten.
 3. Wir sind freundlich, auch im Code-Review. Wir kritisieren den Code, nicht die Person.
 4. Wer eine Aufgabe nicht schafft, sagt es früh im Daily. Das ist kein Problem, sondern gehört dazu.
+5. Angular ist für die meisten neu. Wer es schon kann, arbeitet bewusst im Paar mit jemandem, der es lernt.
 
 ## Wer macht was? (Eintragen beim Kickoff)
 | Rolle | Name |
