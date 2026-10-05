@@ -120,7 +120,7 @@ Der Use Case gilt als erfolgreich umgesetzt, wenn folgendes erfüllt ist:
 
 ### Offene Punkte
 
-[Gibt es noch Aufwendungen, die ein neues Use Case erfordern?]
+[Gibt es noch Aufwendungen, die ein neues Use Case bzw. Ticket erfordern?]
 - 
 
 ### Erkenntnisse / Ergebnisse
