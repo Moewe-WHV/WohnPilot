@@ -1,36 +1,4 @@
 
-### Angular ###
-## Angular ##
-# compiled output
-dist/
-tmp/
-app/**/*.js
-app/**/*.js.map
-
-# dependencies
-node_modules/
-bower_components/
-
-# IDEs and editors
-.idea/
-
-# misc
-.sass-cache/
-connect.lock/
-coverage/
-libpeerconnection.log/
-npm-debug.log
-testem.log
-typings/
-.angular/
-
-# e2e
-e2e/*.js
-e2e/*.map
-
-# System Files
-.DS_Store/
-
 ### Git ###
 # Created by git for backups. To disable backups in Git:
 # $ git config --global mergetool.keepBackup false
@@ -324,11 +292,11 @@ cover/
 *.mo
 *.pot
 
-# Django stuff:
+# Unsere Datenbank (jeder hat seine eigene Datei, die kommt nicht in Git)
 *.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
+*.db
+*.sqlite3
+*.sqlite3-journal
 
 # Flask stuff:
 instance/
