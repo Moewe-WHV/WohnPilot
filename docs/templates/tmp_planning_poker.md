@@ -24,7 +24,7 @@
 
 | Feld | Eingabe |
 | --- | --- |
-| Skala | [z. B. Fibonacci: 1, 2, 3, 5, 8, 13, 21 / T-Shirt-Größen: XS, S, M, L, XL] |
+| Skala | [Fibonacci: 1, 2, 3, 5, 8, 13, 21] |
 | Sonderkarten | [? = unklar, ☕ = Pause, ∞ = zu groß] |
 | Referenzstory | [Name der Vergleichsstory] mit [X Story Points] |
 | Einheit | [Story Points / Personentage] |
