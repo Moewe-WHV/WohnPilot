@@ -86,7 +86,7 @@ Jeder schreibt etwas zu jeder Spalte:
 - **Sprint-Ziel (ein Satz):*Userstorys 01,08,09 & 11*
 
 | Story | Punkte (Poker) | Paar | Aufgaben |
-|---|---|---|---|---|
+|---|---|---|---|
 | 1     |DoDs in Guthub         |  Tim        | bis 07.10 | erledigt
 | 2     |Angular/Django Kurs    |  Hüseyin    | 1.10      | verfällt Hüsyin nicht mehr dabei  
 | 3     |Schätzstruktur         | Sascha      |05.10 12Uhr| erledigt
