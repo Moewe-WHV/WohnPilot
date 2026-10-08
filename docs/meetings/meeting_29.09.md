@@ -41,9 +41,9 @@
 
 | #     | Aufgabe               | R         | A         | C             | I                 | Frist     | Status    |
 | ---   | ---                   | ---       | ---       | ---           | ---               | ---       | ---       |
-| 1     |Sebastian anschreiben  |  Tim                                  | Sebastian         | 29. 12Uhr | in Arbeit
-| 2     |DoDs in Guthub         |  Tim                                                      | 29. 12 Uhr| in Arbeit
-| 3     |Angular/Django Kurs    |  Hüseyin                                                  | 1.10      | offen         
+| 1     |Sebastian anschreiben  |  Tim                                  | Sebastian         | 29. 12Uhr | fertig
+| 2     |DoDs in Guthub         |  Tim                                                      | 29. 12 Uhr| in arbeit
+| 3     |Angular/Django Kurs    |  Hüseyin                                                  | 1.10      | verfällt Hüsyin nicht mehr dabei       
          
 
 ```
