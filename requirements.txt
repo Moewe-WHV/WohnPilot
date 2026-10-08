@@ -1,1 +1,3 @@
-Django>=5.2,<5.3
+# Für das Programm selbst brauchen wir erstmal nichts extra.
+# Wir nutzen nur, was bei Python schon dabei ist (z. B. sqlite3, hashlib).
+# Kommt später ein Paket dazu, tragen wir es hier ein.
