@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="A0YT4tZJZA9-dRKvh4Hf" name="Klassen">
-        <mxGraphModel dx="1108" dy="498" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+        <mxGraphModel dx="771" dy="498" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -13,7 +13,7 @@
                 <mxCell id="kl-daten-line" parent="kl-daten" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;fontColor=light-dark(#000000,#FFFFFF);" value="" vertex="1">
                     <mxGeometry height="8" width="525" y="52" as="geometry"/>
                 </mxCell>
-                <mxCell id="kl-daten-m1" parent="kl-daten" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ hole_nutzerkonto_by_nutzername(verbindung, nutzername): Nutzerkonto | None" vertex="1">
+                <mxCell id="kl-daten-m1" parent="kl-daten" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ hole_nutzerkonto_nach&lt;span style=&quot;color: rgb(63, 63, 63); background-color: transparent;&quot;&gt;_nutzername(verbindung, nutzername): Nutzerkonto | None&lt;/span&gt;" vertex="1">
                     <mxGeometry height="26" width="525" y="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="kl-daten-m2" parent="kl-daten" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ passwort_hashen(passwort): str" vertex="1">
