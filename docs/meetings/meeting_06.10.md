@@ -1,11 +1,6 @@
-# Meeting-Vorlage
-
-Für jedes Meeting kopieren wir den passenden Teil in eine neue Datei unter `docs/meetings/`.
-Name der Datei: `2026-10-06-review-planning.md` (Datum, dann Art des Meetings).
-
+# Meeting 06.10.2026
 ---
 
-## Kopf (für jedes Meeting)
 - **Datum / Uhrzeit:*06.10.26 9:35*
 - **Sprint:*0*
 - **Protokoll:*3*

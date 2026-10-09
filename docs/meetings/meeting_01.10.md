@@ -1,11 +1,5 @@
-# Meeting-Vorlage
-
-Für jedes Meeting kopieren wir den passenden Teil in eine neue Datei unter `docs/meetings/`.
-Name der Datei: `2026-10-06-review-planning.md` (Datum, dann Art des Meetings).
-
+# Meeting 01.10.2026
 ---
-
-## Kopf (für jedes Meeting)
 - **Datum / Uhrzeit:*01.10.26 9:30*
 - **Sprint:*0*
 - **Protokoll:*2*
@@ -14,11 +8,6 @@ Name der Datei: `2026-10-06-review-planning.md` (Datum, dann Art des Meetings).
 
 ---
 
-## 1.
-
-Regeln:
-- Kurz halten. Probleme werden **nach** dem Daily besprochen.
-- Wer Hilfe braucht, sagt es hier. Das ist normal.
 
 - <Neue Rollenverteilung:>
  Mitglieder: Bianca, Benjamin, Sascha, Sarunas, Tim, Sarah
@@ -43,35 +32,6 @@ Erster Sprint im Projekt, Planning Poker noch offen bis montag
 
 ---
 
-## 2. Wochentreffen mit dem Dozenten (90 Minuten)
-
-| Zeit | Punkt |
-|---|---|
-| 0–25 Min. | Review |
-| 25–45 Min. | Retro |
-| 45–85 Min. | Planning |
-| 85–90 Min. | Abschluss |
-
-### Review (Ergebnis zeigen)
-- **Sprint-Ziel war:**
-- **Geschafft?** ja / teilweise / nein
-
-| Story | Fertig laut Fertig-Liste? | Vom PO abgenommen? | Anmerkung |
-|---|---|---|---|
-
-
-
-- **Feedback vom Dozenten:**
-- **Nicht fertig geworden, weil:**
-
-### Retro (über die Zusammenarbeit reden)
-Jeder schreibt etwas zu jeder Spalte:
-
-| Das lief gut | Das lief nicht so gut | Das probieren wir nächste Woche |
-|---|---|---|
-| | | |
-
-**Wir nehmen uns diese eine Sache vor:**
 
 ### Planning (nächsten Sprint planen)
 - **Sprint-Nummer / Zeitraum:*05.10.26 - klärung morgen 15uhr vorschläge im chat, islave*
@@ -100,10 +60,3 @@ Jeder schreibt etwas zu jeder Spalte:
 
 ---
 
-## 3. Beschlüsse und To-dos (für jedes Meeting)
-
-| Nr. | Beschluss / Aufgabe | Wer | Bis wann | Erledigt |
-|---|---|---|---|---|
-| 1 | | | | |
-
-Wichtige Entscheidungen tragen wir zusätzlich ins Entscheidungslog ein (siehe [dokumentation.md](../readme/dokumentation.md)).
