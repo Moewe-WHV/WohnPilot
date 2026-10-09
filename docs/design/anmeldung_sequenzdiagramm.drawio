@@ -1,0 +1,72 @@
+<mxfile host="65bd71144e">
+    <diagram id="1EHfJiRg16IfMmHCgKui" name="Sequenz">
+        <mxGraphModel dx="1108" dy="774" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="E_O4Z6YjWf_qkkfKbwTt-1" parent="1" style="html=1;whiteSpace=wrap;shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=40;fontColor=light-dark(#000000,#FFFFFF);" value="Mieter (Anna)" vertex="1">
+                    <mxGeometry height="1000" width="140" x="365" y="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_O4Z6YjWf_qkkfKbwTt-2" parent="1" style="html=1;whiteSpace=wrap;shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=40;fontColor=light-dark(#000000,#FFFFFF);" value="konto/ansicht.py" vertex="1">
+                    <mxGeometry height="1000" width="140" x="625" y="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_O4Z6YjWf_qkkfKbwTt-3" parent="1" style="html=1;whiteSpace=wrap;shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=40;fontColor=light-dark(#000000,#FFFFFF);" value="konto/daten.py" vertex="1">
+                    <mxGeometry height="1000" width="140" x="885" y="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_O4Z6YjWf_qkkfKbwTt-4" parent="1" style="html=1;whiteSpace=wrap;shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=40;fontColor=light-dark(#000000,#FFFFFF);" value="SQLite (DB)" vertex="1">
+                    <mxGeometry height="990" width="138.6" x="1125" y="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_O4Z6YjWf_qkkfKbwTt-5" edge="1" parent="1" source="E_O4Z6YjWf_qkkfKbwTt-1" style="html=1;endArrow=block;endFill=1;exitX=0.5;exitY=0.07;exitDx=0;exitDy=0;entryX=0.5;entryY=0.07;entryDx=0;entryDy=0;fontColor=light-dark(#000000,#FFFFFF);" target="E_O4Z6YjWf_qkkfKbwTt-2" value="&amp;nbsp;startet Programm&amp;nbsp;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_O4Z6YjWf_qkkfKbwTt-6" edge="1" parent="1" source="E_O4Z6YjWf_qkkfKbwTt-2" style="html=1;endArrow=block;endFill=1;exitX=0.5;exitY=0.12;exitDx=0;exitDy=0;entryX=0.5;entryY=0.12;entryDx=0;entryDy=0;fontColor=light-dark(#000000,#FFFFFF);" target="E_O4Z6YjWf_qkkfKbwTt-1" value="&amp;nbsp;eingabe Nutzername&amp;nbsp;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_O4Z6YjWf_qkkfKbwTt-7" edge="1" parent="1" source="E_O4Z6YjWf_qkkfKbwTt-1" style="html=1;endArrow=block;endFill=1;exitX=0.5;exitY=0.17;exitDx=0;exitDy=0;entryX=0.5;entryY=0.17;entryDx=0;entryDy=0;fontColor=light-dark(#000000,#FFFFFF);" target="E_O4Z6YjWf_qkkfKbwTt-2" value="&amp;nbsp;„Anna“&amp;nbsp;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_O4Z6YjWf_qkkfKbwTt-8" edge="1" parent="1" source="E_O4Z6YjWf_qkkfKbwTt-2" style="html=1;endArrow=block;endFill=1;exitX=0.5;exitY=0.22;exitDx=0;exitDy=0;entryX=0.5;entryY=0.22;entryDx=0;entryDy=0;fontColor=light-dark(#000000,#FFFFFF);" target="E_O4Z6YjWf_qkkfKbwTt-1" value="&amp;nbsp;eingabe Passwort (verdeckt)&amp;nbsp;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_O4Z6YjWf_qkkfKbwTt-9" edge="1" parent="1" source="E_O4Z6YjWf_qkkfKbwTt-1" style="html=1;endArrow=block;endFill=1;exitX=0.5;exitY=0.27;exitDx=0;exitDy=0;entryX=0.5;entryY=0.27;entryDx=0;entryDy=0;fontColor=light-dark(#000000,#FFFFFF);" target="E_O4Z6YjWf_qkkfKbwTt-2" value="&amp;nbsp;„P4ssw0rt“&amp;nbsp;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_O4Z6YjWf_qkkfKbwTt-10" edge="1" parent="1" source="E_O4Z6YjWf_qkkfKbwTt-2" style="html=1;endArrow=block;endFill=1;exitX=0.5;exitY=0.33;exitDx=0;exitDy=0;entryX=0.5;entryY=0.33;entryDx=0;entryDy=0;fontColor=light-dark(#000000,#FFFFFF);" target="E_O4Z6YjWf_qkkfKbwTt-3" value="&amp;nbsp;hole_nutzerkonto_by_nutzername&amp;nbsp;&lt;div&gt;(verbindung, „Anna“)&lt;/div&gt;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_O4Z6YjWf_qkkfKbwTt-11" edge="1" parent="1" source="E_O4Z6YjWf_qkkfKbwTt-3" style="html=1;endArrow=block;endFill=1;exitX=0.5;exitY=0.38;exitDx=0;exitDy=0;entryX=0.5;entryY=0.38;entryDx=0;entryDy=0;fontColor=light-dark(#000000,#FFFFFF);" target="E_O4Z6YjWf_qkkfKbwTt-4" value="&amp;nbsp;SELECT ...">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_O4Z6YjWf_qkkfKbwTt-12" edge="1" parent="1" source="E_O4Z6YjWf_qkkfKbwTt-4" style="html=1;endArrow=open;endFill=0;dashed=1;exitX=0.5;exitY=0.43;exitDx=0;exitDy=0;entryX=0.5;entryY=0.43;entryDx=0;entryDy=0;fontColor=light-dark(#000000,#FFFFFF);" target="E_O4Z6YjWf_qkkfKbwTt-3" value="&amp;nbsp;Row / None&amp;nbsp;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_O4Z6YjWf_qkkfKbwTt-13" edge="1" parent="1" source="E_O4Z6YjWf_qkkfKbwTt-3" style="html=1;endArrow=open;endFill=0;dashed=1;exitX=0.5;exitY=0.48;exitDx=0;exitDy=0;entryX=0.5;entryY=0.48;entryDx=0;entryDy=0;fontColor=light-dark(#000000,#FFFFFF);" target="E_O4Z6YjWf_qkkfKbwTt-2" value="&amp;nbsp;Nutzerkonto-Objekt / None&amp;nbsp;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_O4Z6YjWf_qkkfKbwTt-14" edge="1" parent="1" source="E_O4Z6YjWf_qkkfKbwTt-2" style="html=1;endArrow=block;endFill=1;exitX=0.5;exitY=0.575;exitDx=0;exitDy=0;entryX=0.5;entryY=0.575;entryDx=0;entryDy=0;fontColor=light-dark(#000000,#FFFFFF);" target="E_O4Z6YjWf_qkkfKbwTt-3" value="passwort_pruefen&lt;div&gt;&amp;nbsp;(passwort, nutzerkonto.passwort_hash)&amp;nbsp;&lt;/div&gt;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="E_O4Z6YjWf_qkkfKbwTt-15" edge="1" parent="1" source="E_O4Z6YjWf_qkkfKbwTt-3" style="html=1;endArrow=open;endFill=0;dashed=1;exitX=0.5;exitY=0.62;exitDx=0;exitDy=0;entryX=0.5;entryY=0.62;entryDx=0;entryDy=0;fontColor=light-dark(#000000,#FFFFFF);" target="E_O4Z6YjWf_qkkfKbwTt-2" value="&amp;nbsp;True / False&amp;nbsp;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_O4Z6YjWf_qkkfKbwTt-16" parent="1" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;fillColor=none;width=50;height=20;align=left;verticalAlign=top;fontSize=10;fontColor=light-dark(#000000,#FFFFFF);" value="alt" vertex="1">
+                    <mxGeometry height="300" width="700" x="345" y="730" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_O4Z6YjWf_qkkfKbwTt-17" edge="1" parent="1" source="E_O4Z6YjWf_qkkfKbwTt-2" style="html=1;endArrow=block;endFill=1;exitX=0.5;exitY=0.735;exitDx=0;exitDy=0;entryX=0.5;entryY=0.735;entryDx=0;entryDy=0;fontColor=light-dark(#000000,#FFFFFF);" target="E_O4Z6YjWf_qkkfKbwTt-1" value="Hauptmenü">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_O4Z6YjWf_qkkfKbwTt-18" edge="1" parent="1" style="html=1;endArrow=none;dashed=1;" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="345" y="880" as="sourcePoint"/>
+                        <mxPoint x="1045" y="880" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="E_O4Z6YjWf_qkkfKbwTt-19" edge="1" parent="1" source="E_O4Z6YjWf_qkkfKbwTt-2" style="html=1;endArrow=block;endFill=1;exitX=0.5;exitY=0.875;exitDx=0;exitDy=0;entryX=0.5;entryY=0.875;entryDx=0;entryDy=0;fontColor=light-dark(#000000,#FFFFFF);" target="E_O4Z6YjWf_qkkfKbwTt-1" value="&amp;bdquo;Anmeldung nicht möglich &amp;ndash; falsche Eingaben.&amp;ldquo;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

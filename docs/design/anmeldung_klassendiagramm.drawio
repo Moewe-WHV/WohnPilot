@@ -1,0 +1,98 @@
+<mxfile host="65bd71144e">
+    <diagram id="A0YT4tZJZA9-dRKvh4Hf" name="Klassen">
+        <mxGraphModel dx="1108" dy="498" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="kl-daten" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="konto/daten.py" vertex="1">
+                    <mxGeometry height="138" width="525" x="51" y="39" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-daten-stereo" parent="kl-daten" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontStyle=2;fontColor=light-dark(#000000,#FFFFFF);" value="&amp;laquo;Modul&amp;raquo;" vertex="1">
+                    <mxGeometry height="26" width="525" y="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-daten-line" parent="kl-daten" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;fontColor=light-dark(#000000,#FFFFFF);" value="" vertex="1">
+                    <mxGeometry height="8" width="525" y="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-daten-m1" parent="kl-daten" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ hole_nutzerkonto_by_nutzername(verbindung, nutzername): Nutzerkonto | None" vertex="1">
+                    <mxGeometry height="26" width="525" y="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-daten-m2" parent="kl-daten" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ passwort_hashen(passwort): str" vertex="1">
+                    <mxGeometry height="26" width="525" y="86" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-daten-m3" parent="kl-daten" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ passwort_pruefen(passwort, passwort_hash): bool" vertex="1">
+                    <mxGeometry height="26" width="525" y="112" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-ansicht" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="konto/ansicht.py" vertex="1">
+                    <mxGeometry height="164" width="516" x="55.5" y="286" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-ansicht-stereo" parent="kl-ansicht" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontStyle=2;fontColor=light-dark(#000000,#FFFFFF);" value="&amp;laquo;Modul&amp;raquo;" vertex="1">
+                    <mxGeometry height="26" width="516" y="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-ansicht-attr" parent="kl-ansicht" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ aktuelles_nutzerkonto: Nutzerkonto | None" vertex="1">
+                    <mxGeometry height="26" width="516" y="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-ansicht-line" parent="kl-ansicht" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;fontColor=light-dark(#000000,#FFFFFF);" value="" vertex="1">
+                    <mxGeometry height="8" width="516" y="78" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-ansicht-m1" parent="kl-ansicht" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ anmelden(): Nutzerkonto | None" vertex="1">
+                    <mxGeometry height="26" width="516" y="86" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-ansicht-m2" parent="kl-ansicht" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ abmelden(): None" vertex="1">
+                    <mxGeometry height="26" width="516" y="112" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-ansicht-m3" parent="kl-ansicht" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ zeige_hauptmenue(nutzerkonto): None" vertex="1">
+                    <mxGeometry height="26" width="516" y="138" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-nutzerkonto" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="Nutzerkonto" vertex="1">
+                    <mxGeometry height="312" width="260" x="735" y="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-nk-1" parent="kl-nutzerkonto" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ id: int" vertex="1">
+                    <mxGeometry height="26" width="260" y="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-nk-2" parent="kl-nutzerkonto" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ nutzername: str" vertex="1">
+                    <mxGeometry height="26" width="260" y="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-nk-3" parent="kl-nutzerkonto" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="- passwort_hash: str" vertex="1">
+                    <mxGeometry height="26" width="260" y="78" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-nk-4" parent="kl-nutzerkonto" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ nachname: str" vertex="1">
+                    <mxGeometry height="26" width="260" y="104" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-nk-5" parent="kl-nutzerkonto" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ vorname: str" vertex="1">
+                    <mxGeometry height="26" width="260" y="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-nk-6" parent="kl-nutzerkonto" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ adresse: str" vertex="1">
+                    <mxGeometry height="26" width="260" y="156" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-nk-7" parent="kl-nutzerkonto" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ hausnummer: str" vertex="1">
+                    <mxGeometry height="26" width="260" y="182" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-nk-8" parent="kl-nutzerkonto" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ wohnungsnummer: str" vertex="1">
+                    <mxGeometry height="26" width="260" y="208" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-nk-9" parent="kl-nutzerkonto" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ plz: str" vertex="1">
+                    <mxGeometry height="26" width="260" y="234" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-nk-10" parent="kl-nutzerkonto" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ ort: str" vertex="1">
+                    <mxGeometry height="26" width="260" y="260" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-nk-11" parent="kl-nutzerkonto" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#FFFFFF);" value="+ rolle: str" vertex="1">
+                    <mxGeometry height="26" width="260" y="286" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-edge-nutzt" edge="1" parent="1" source="kl-ansicht" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;fontColor=light-dark(#000000,#FFFFFF);" target="kl-daten" value="nutzt">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="kl-edge-liefert" edge="1" parent="1" source="kl-daten" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontColor=light-dark(#000000,#FFFFFF);" target="kl-nk-1" value="&amp;nbsp;liefert&amp;nbsp;">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="kl-edge-merkt" edge="1" parent="1" source="kl-ansicht" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;fontColor=light-dark(#000000,#FFFFFF);" target="kl-nk-11" value="&amp;nbsp;merkt sich&amp;nbsp;">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
