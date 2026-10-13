@@ -144,6 +144,7 @@ Das sind unsere 12 User Stories für den Vermieter:
                 Gesamtbetrag
 
 (7. V01 Nebenkostenabrechnung als PDF bereitstellen)
+
 8. Zählerstände einsehen
         Der angemeldete Benutzer kann die Zählerstände der einzelnen Mieter einsehen. 
                 [Anzeige von Zählerart und Zählernummer]
