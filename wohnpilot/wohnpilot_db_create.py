@@ -1,11 +1,11 @@
-import sqlite3
+import sqlite3 # Python-Modul für Verbindung zu SQLite
 
 DB_PFAD = "wohnpilot.db"
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS benutzer (
     benutzer_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    benutzername TEXT NOT NULL COLLATE NOCASE,
+    benutzername TEXT NOT NULL COLLATE NOCASE, -- SQLite für: Groß- und Kleinschreibung werden bei Abfragen ignoriert
     passwort_hash TEXT NOT NULL,
     vorname TEXT NOT NULL,
     nachname TEXT NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS mietvertraege (
     erstellt_am TEXT NOT NULL,
     pdf TEXT,
 
-    CONSTRAINT FK_mietvertraege_mieter_id
+    CONSTRAINT FK_mietvertraege_mieter_id -- CONSTRAINT leitet die Definition einer Regel ein
         FOREIGN KEY (mieter_id)
         REFERENCES benutzer (benutzer_id)
         ON DELETE RESTRICT, -- Benutzer darf nicht gelöscht werden, solange noch ein Mietvertrag besteht
@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS mietvertraege (
         ON DELETE RESTRICT
 );
 
+-- mittels Index können Abfragen schneller durchgeführt werden (ohne jedesmal die gesamte Tabelle zu durchsuchen)
 CREATE INDEX IF NOT EXISTS idx_mietvertraege_mieter_id ON mietvertraege (mieter_id);
 CREATE INDEX IF NOT EXISTS idx_mietvertraege_verwalter_id ON mietvertraege (verwalter_id);
 CREATE INDEX IF NOT EXISTS idx_mietvertraege_mietobjekt_id ON mietvertraege (mietobjekt_id);
@@ -72,7 +73,7 @@ CREATE TABLE IF NOT EXISTS mietvertragsdokumente (
     CONSTRAINT FK_mietvertragsdokumente_mietvertrag_id
         FOREIGN KEY (mietvertrag_id)
         REFERENCES mietvertraege (mietvertrag_id)
-        ON DELETE RESTRICT
+        ON DELETE RESTRICT -- solange ein Mietvertragsdokument auf den Mietvertrag verweist, darf der Mietvertrag nicht gelöscht werden
 );
 
 CREATE INDEX IF NOT EXISTS idx_mietvertragsdokumente_mietvertrag_id ON mietvertragsdokumente (mietvertrag_id);
@@ -122,7 +123,7 @@ CREATE TABLE IF NOT EXISTS zaehler (
     zaehlerart TEXT NOT NULL CHECK (zaehlerart IN ('strom', 'gas', 'wasser')),
     zaehlernummer TEXT NOT NULL,
 
-    CONSTRAINT FK_zaehler_mietobjekt_id
+    CONSTRAINT FK_zaehler_mietobjekt_id 
         FOREIGN KEY (mietobjekt_id)
         REFERENCES mietobjekte (mietobjekt_id)
         ON DELETE RESTRICT
@@ -186,7 +187,7 @@ CREATE TABLE IF NOT EXISTS wartungsmeldungen (
     CONSTRAINT FK_wartungsmeldungen_bearbeiter_id
         FOREIGN KEY (bearbeiter_id)
         REFERENCES benutzer (benutzer_id)
-        ON DELETE SET NULL -- Wird der Benutzer gelöscht, wird die bearbeiter_id = NULL
+        ON DELETE SET NULL -- Wird der Benutzer = Bearbeiter gelöscht, wird die bearbeiter_id = NULL
 );
 
 CREATE INDEX IF NOT EXISTS idx_wartungsmeldungen_mietobjekt_id ON wartungsmeldungen (mietobjekt_id);
@@ -196,6 +197,7 @@ CREATE INDEX IF NOT EXISTS idx_wartungsmeldungen_bearbeiter_id ON wartungsmeldun
 
 
 def verbinden(db_pfad=DB_PFAD):
+    # öffnet die Datenbankdatei wohnpilot.db; wenn sie fehlt, wird sie angelegt
     conn = sqlite3.connect(db_pfad)
     conn.row_factory = sqlite3.Row
     # SQLite prüft Fremdschlüssel nur, wenn das pro Verbindung eingeschaltet wird
@@ -204,6 +206,7 @@ def verbinden(db_pfad=DB_PFAD):
 
 
 def datenbank_erstellen(db_pfad=DB_PFAD):
+    # Verbindung zur Datenbank herstellen
     conn = verbinden(db_pfad)
     conn.executescript(SCHEMA)
     conn.commit()
@@ -211,9 +214,12 @@ def datenbank_erstellen(db_pfad=DB_PFAD):
 
 
 if __name__ == "__main__":
+    # Dieser Block läuft nur, wenn die Datei direkt gestartet wird, also wenn eine andere py-Datei das Skript importiert
+    # ansonsten muss im Terminal "python wohnpilot_db.py" ausgeführt werden, um die Tabellen zu erstellen
     conn = datenbank_erstellen()
-    # Entspricht SHOW TABLES
+    # Entspricht SHOW TABLES in SQL
     for zeile in conn.execute(
+        # Tabellen mit sqlite als Präfix werden von der Suche ausgeschlossen, weil es interne Dateien geben kann (von SQLite selbst)
         "SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%' ORDER BY name"
     ):
         print(zeile["name"])
