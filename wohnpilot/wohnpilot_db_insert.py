@@ -70,26 +70,26 @@ def benutzer_einfuegen(conn):
     damit mehrfaches Ausführen keine Duplikate erzeugt (benutzername ist nicht UNIQUE)."""
     sql = (
         f"INSERT INTO benutzer ({', '.join(SPALTEN)}) "
-        f"VALUES ({', '.join('?' * len(SPALTEN))})"
+        f"VALUES ({', '.join('?' * len(SPALTEN))})" # Platzhalter
     )
-    eingefuegt = 0
+    eingefuegt = 0 # zählt, wie viele Benutzer hinzugefügt wurden
     for zeile in BENUTZER:
         vorhanden = conn.execute(
             "SELECT 1 FROM benutzer WHERE benutzername = ?", (zeile[0],)
-        ).fetchone()
+        ).fetchone() # liefert den ersten Treffer oder None
         if vorhanden:
-            continue
+            continue # bei Duplikaten wird übersprungen
         conn.execute(sql, zeile)
         eingefuegt += 1
     conn.commit()
     return eingefuegt
 
 
-if __name__ == "__main__":
-    conn = datenbank_erstellen()
-    anzahl = benutzer_einfuegen(conn)
+if __name__ == "__main__": # prüft, ob die Datei direkt gestartet wurde
+    conn = datenbank_erstellen() # erstellt oder öffnet, wenn vorhanden, die Datenbank
+    anzahl = benutzer_einfuegen(conn) # fügt Benutzer hinzu und speichert die Anzahl
     print(f"{anzahl} Benutzer eingefügt.")
-    for z in conn.execute(
+    for z in conn.execute( # zählt die Benutzer je Rolle und sortiert sie alphabetisch
         "SELECT rolle, COUNT(*) AS anzahl FROM benutzer GROUP BY rolle ORDER BY rolle"
     ):
         print(f"{z['rolle']}: {z['anzahl']}")
