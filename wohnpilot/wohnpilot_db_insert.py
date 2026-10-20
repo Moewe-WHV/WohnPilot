@@ -1,4 +1,4 @@
-from wohnpilot_db import datenbank_erstellen
+from wohnpilot_db_create import datenbank_erstellen
 
 SPALTEN = (
     "benutzername", "passwort_hash", "vorname", "nachname", "email",
