@@ -199,7 +199,8 @@ CREATE INDEX IF NOT EXISTS idx_wartungsmeldungen_bearbeiter_id ON wartungsmeldun
 def verbinden(db_pfad=DB_PFAD):
     # öffnet die Datenbankdatei wohnpilot.db; wenn sie fehlt, wird sie angelegt
     conn = sqlite3.connect(db_pfad)
-    conn.row_factory = sqlite3.Row
+    # sqlite3.Row ist speichereffizient, weil die Daten nur ein einziges mal abgelegt werden. Beim Aufruf wird der Index ermittelt. 
+    conn.row_factory = sqlite3.Row # legt fest, wie die Zeilen aus einer SQLite-Datenbankabfrage dargestellt werden. Anstatt als Tupel werden sie hiermit als Dictionaries angezeigt. 
     # SQLite prüft Fremdschlüssel nur, wenn das pro Verbindung eingeschaltet wird
     conn.execute("PRAGMA foreign_keys = ON")
     return conn
