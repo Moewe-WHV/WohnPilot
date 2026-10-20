@@ -1,0 +1,199 @@
+
+CREATE DATABASE wohnpilot
+    CHARACTER SET utf8mb4 -- deckt alle Unicode-Zeichen ab, somit auch Müller oder šarunas
+    COLLATE utf8mb4_unicode_ci; -- collate bstimmt, wie Texte sortiert und verglichen werden -- ci meint case insensitive = Groß-Kleinschreibung wird ignoriert
+
+USE wohnpilot;
+
+CREATE TABLE benutzer (
+    benutzer_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    benutzername VARCHAR(25) NOT NULL,
+    passwort_hash VARCHAR(255) NOT NULL,
+    vorname VARCHAR(50) NOT NULL,
+    nachname VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    telefon VARCHAR(30),
+    strasse VARCHAR(100),
+    hausnummer VARCHAR(10),
+    plz VARCHAR(5),
+    ort VARCHAR(50),
+    rolle ENUM('mieter', 'verwalter', 'admin') NOT NULL,
+    erstellt_am DATETIME NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE mietobjekte (
+    mietobjekt_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    typ ENUM('wohnung', 'haus') NOT NULL,
+    strasse VARCHAR(100) NOT NULL,
+    hausnummer VARCHAR(10) NOT NULL,
+    wohnungsnummer VARCHAR(20),
+    plz VARCHAR(10) NOT NULL,
+    ort VARCHAR(100) NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE mietvertraege (
+    mietvertrag_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    mieter_id INT NOT NULL,
+    verwalter_id INT NOT NULL,
+    mietobjekt_id INT NOT NULL,
+    vertragsbeginn DATE NOT NULL,
+    vertragsende DATE,
+    kaltmiete INT NOT NULL,
+    nebenkostenvorauszahlung INT NOT NULL,
+    kaution INT,
+    erstellt_am DATETIME NOT NULL,
+    pdf TEXT,
+
+    INDEX idx_mietvertraege_mieter_id (mieter_id), -- erstellt einen Index auf mieter_id, damit Abfragen effizient durchgeführt werden
+    INDEX idx_mietvertraege_verwalter_id (verwalter_id),
+    INDEX idx_mietvertraege_mietobjekt_id (mietobjekt_id),
+
+    CONSTRAINT FK_mietvertraege_mieter_id
+        FOREIGN KEY (mieter_id)
+        REFERENCES benutzer (benutzer_id)
+        ON DELETE RESTRICT, -- Benutzer darf nicht gelöscht werden, solange noch ein Mietvertrag besteht
+        -- ON DELETE CASCADE -- Wird der Benuter gelöscht, werden auch seine Mietverträge gelöscht
+
+    CONSTRAINT FK_mietvertraege_verwalter_id
+        FOREIGN KEY (verwalter_id)
+        REFERENCES benutzer (benutzer_id)
+        ON DELETE RESTRICT,
+
+    CONSTRAINT FK_mietvertraege_mietobjekt_id
+        FOREIGN KEY (mietobjekt_id)
+        REFERENCES mietobjekte (mietobjekt_id)
+        ON DELETE RESTRICT
+) ENGINE=InnoDB;
+
+CREATE TABLE mietvertragsdokumente (
+    dokument_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    mietvertrag_id INT NOT NULL,
+    dateiname VARCHAR(255) NOT NULL,
+    dateipfad VARCHAR(500) NOT NULL,
+    hochgeladen_am DATETIME NOT NULL,
+
+    INDEX idx_mietvertragsdokumente_mietvertrag_id (mietvertrag_id),
+
+    CONSTRAINT FK_mietvertragsdokumente_mietvertrag_id
+        FOREIGN KEY (mietvertrag_id)
+        REFERENCES mietvertraege (mietvertrag_id)
+        ON DELETE RESTRICT
+) ENGINE=InnoDB;
+
+CREATE TABLE nachrichten (
+    nachricht_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    absender_id INT NOT NULL,
+    empfaenger_id INT NOT NULL,
+    titel VARCHAR(150) NOT NULL,
+    inhalt TEXT NOT NULL,
+    status ENUM('gesendet', 'gelesen') NOT NULL,
+    erstellt_am DATETIME NOT NULL,
+
+    INDEX idx_nachrichten_absender_id (absender_id),
+    INDEX idx_nachrichten_empfaenger_id (empfaenger_id),
+
+    CONSTRAINT FK_nachrichten_absender_id
+        FOREIGN KEY (absender_id)
+        REFERENCES benutzer (benutzer_id)
+        ON DELETE RESTRICT,
+
+    CONSTRAINT FK_nachrichten_empfaenger_id
+        FOREIGN KEY (empfaenger_id)
+        REFERENCES benutzer (benutzer_id)
+        ON DELETE RESTRICT
+) ENGINE=InnoDB;
+
+CREATE TABLE zahlungen (
+    zahlung_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    mietvertrag_id INT NOT NULL,
+    zahlungsdatum DATE,
+    faelligkeitsdatum DATE NOT NULL,
+    betrag INT NOT NULL,
+    status ENUM('offen', 'bezahlt', 'überaellig') NOT NULL,
+
+    INDEX idx_zahlungen_mietvertrag_id (mietvertrag_id),
+
+    CONSTRAINT FK_zahlungen_mietvertrag_id
+        FOREIGN KEY (mietvertrag_id)
+        REFERENCES mietvertraege (mietvertrag_id)
+        ON DELETE RESTRICT
+) ENGINE=InnoDB;
+
+CREATE TABLE zaehler (
+    zaehler_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    mietobjekt_id INT NOT NULL,
+    zaehlerart ENUM('strom', 'gas', 'wasser') NOT NULL,
+    zaehlernummer VARCHAR(50) NOT NULL,
+
+    INDEX idx_zaehler_mietobjekt_id (mietobjekt_id),
+
+    CONSTRAINT FK_zaehler_mietobjekt_id
+        FOREIGN KEY (mietobjekt_id)
+        REFERENCES mietobjekte (mietobjekt_id)
+        ON DELETE RESTRICT
+) ENGINE=InnoDB;
+
+CREATE TABLE zaehlerstaende (
+    zaehlerstand_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    zaehler_id INT NOT NULL,
+    ablesedatum DATE NOT NULL,
+    zaehlerstand DECIMAL(12,3) NOT NULL,
+    erstellt_am DATETIME NOT NULL,
+
+    INDEX idx_zaehlerstaende_zaehler_id (zaehler_id),
+
+    CONSTRAINT FK_zaehlerstaende_zaehler_id
+        FOREIGN KEY (zaehler_id)
+        REFERENCES zaehler (zaehler_id)
+        ON DELETE RESTRICT
+) ENGINE=InnoDB;
+
+CREATE TABLE nebenkostenabrechnungen (
+    nebenkostenabrechnung_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    mietvertrag_id INT NOT NULL,
+    abrechnungsjahr YEAR NOT NULL, -- 2026
+    abrechnungsdatum DATE NOT NULL, -- 2027-02-17
+    gesamtbetrag INT NOT NULL,
+    erstellt_am DATETIME NOT NULL,
+    pdf TEXT,
+
+    INDEX idx_nebenkostenabrechnungen_mietvertrag_id (mietvertrag_id),
+
+    CONSTRAINT FK_nebenkostenabrechnungen_mietvertrag_id
+        FOREIGN KEY (mietvertrag_id)
+        REFERENCES mietvertraege (mietvertrag_id)
+        ON DELETE RESTRICT
+) ENGINE=InnoDB;
+
+CREATE TABLE wartungsmeldungen (
+    wartungsmeldung_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    mietobjekt_id INT NOT NULL,
+    ersteller_id INT NOT NULL,
+    bearbeiter_id INT,
+    titel VARCHAR(150) NOT NULL,
+    beschreibung TEXT NOT NULL,
+    status ENUM('offen', 'in_bearbeitung', 'erledigt', 'abgelehnt') NOT NULL,
+    datum_gemeldet DATETIME NOT NULL,
+    datum_erledigt DATETIME, -- in Python Check-Constraints verwenden, damit nicht status = in_bearbeitung && datum_erledigt = 2026.01.01 
+
+    INDEX idx_wartungsmeldungen_mietobjekt_id (mietobjekt_id),
+    INDEX idx_wartungsmeldungen_ersteller_id (ersteller_id),
+    INDEX idx_wartungsmeldungen_bearbeiter_id (bearbeiter_id),
+
+    CONSTRAINT FK_wartungsmeldungen_mietobjekt_id
+        FOREIGN KEY (mietobjekt_id)
+        REFERENCES mietobjekte (mietobjekt_id)
+        ON DELETE RESTRICT,
+
+    CONSTRAINT FK_wartungsmeldungen_ersteller_id
+        FOREIGN KEY (ersteller_id)
+        REFERENCES benutzer (benutzer_id)
+        ON DELETE RESTRICT,
+
+    CONSTRAINT FK_wartungsmeldungen_bearbeiter_id
+        FOREIGN KEY (bearbeiter_id)
+        REFERENCES benutzer (benutzer_id)
+        ON DELETE SET NULL -- Wird der Benutzer gelöscht, wird die bearbeiter_id = NULL
+) ENGINE=InnoDB;
+
+SHOW TABLES;

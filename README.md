@@ -77,11 +77,22 @@ Wenn eine Versionsnummer kommt, passt es. Vorne in der Zeile steht dann `(.venv)
 
 ### Programm starten
 
-Die Startdatei legen wir in Sprint 1 an. Danach startest du das Programm mit:
+Die Befehle im Projektordner ausführen. Zuerst werden die erfundenen Testkonten
+angelegt:
 
-```bash
-python -m wohnpilot
+```powershell
+py -m wohnpilot.wohnpilot_db_insert
+py -m wohnpilot.konto.ansicht
 ```
+
+Für den Login-Test:
+
+- Benutzername: `login.test`
+- Passwort: `test123`
+
+Das ist ein einfacher Lern-Prototyp: Das Testpasswort wird vorerst direkt
+verglichen und nicht geschützt gespeichert. Nur erfundene Testdaten verwenden.
+Für echte Konten ist dieser Login nicht geeignet.
 
 ### Tests starten
 
