@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS zahlungen (
     zahlungsdatum TEXT,
     faelligkeitsdatum TEXT NOT NULL,
     betrag INTEGER NOT NULL,
-    status TEXT NOT NULL CHECK (status IN ('offen', 'bezahlt', 'überaellig')),
+    status TEXT NOT NULL CHECK (status IN ('offen', 'bezahlt', 'überfällig')),
 
     CONSTRAINT FK_zahlungen_mietvertrag_id
         FOREIGN KEY (mietvertrag_id)
