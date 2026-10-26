@@ -1,4 +1,9 @@
 ### Hauptmenü wird angezeigt ###
+from wohnpilot.zahlungen.ansicht import zeige_zahlungen
+from wohnpilot.wohnpilot_db_create import verbinden
+
+verbindung = verbinden("wohnpilot/wohnpilot.db")
+
 
 def hauptmenu():
     print("Wohnpilot")
@@ -81,6 +86,7 @@ while True:
                 print("Ausgewählt: 0 - Testobjekt")
                 while True:
                     zahlungen()
+                    zeige_zahlungen(verbindung, 8)
                     print("----------------------------------")
                     #print("Hier soll das Skript von US03 für das jeweilige Mietobjekt verwendet werden.")
                     #print("----------------------------------")
