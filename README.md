@@ -77,11 +77,23 @@ Wenn eine Versionsnummer kommt, passt es. Vorne in der Zeile steht dann `(.venv)
 
 ### Programm starten
 
-Die Startdatei legen wir in Sprint 1 an. Danach startest du das Programm mit:
+Beim ersten Start wird die SQLite-Datenbank mit dem vorhandenen Schema angelegt.
+Anschließend erscheint die Anmeldemaske:
 
 ```bash
 python -m wohnpilot
 ```
+
+Zum lokalen Ausprobieren kannst du Testkonten anlegen:
+
+```bash
+python -m wohnpilot.wohnpilot_db_insert
+```
+
+Die Konten verwenden alle dasselbe Testpasswort: `wohnpilot123`. Das Skript setzt
+dieses Passwort auch bei den vorhandenen Beispielkonten neu. Im Lernstand wird
+das Passwort direkt in der Datenbank gespeichert. Verwende diese Lösung nur mit
+erfundenen Testdaten und niemals mit echten Passwörtern.
 
 ### Tests starten
 

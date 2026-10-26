@@ -1,12 +1,14 @@
 import sqlite3 # Python-Modul für Verbindung zu SQLite
+from pathlib import Path
 
-DB_PFAD = "wohnpilot.db"
+# So wird immer die Datenbank im Projektordner geöffnet.
+DB_PFAD = Path(__file__).resolve().parent.parent / "wohnpilot.db"
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS benutzer (
     benutzer_id INTEGER PRIMARY KEY AUTOINCREMENT,
     benutzername TEXT NOT NULL COLLATE NOCASE, -- SQLite für: Groß- und Kleinschreibung werden bei Abfragen ignoriert
-    passwort_hash TEXT NOT NULL,
+    passwort TEXT NOT NULL,
     vorname TEXT NOT NULL,
     nachname TEXT NOT NULL,
     email TEXT NOT NULL COLLATE NOCASE,
@@ -209,6 +211,15 @@ def datenbank_erstellen(db_pfad=DB_PFAD):
     # Verbindung zur Datenbank herstellen
     conn = verbinden(db_pfad)
     conn.executescript(SCHEMA)
+
+    # Bei älteren Datenbanken heißt die Spalte noch passwort_hash.
+    spalten = conn.execute("PRAGMA table_info(benutzer)").fetchall()
+    spaltennamen = [spalte["name"] for spalte in spalten]
+    if "passwort_hash" in spaltennamen and "passwort" not in spaltennamen:
+        conn.execute(
+            "ALTER TABLE benutzer RENAME COLUMN passwort_hash TO passwort"
+        )
+
     conn.commit()
     return conn
 

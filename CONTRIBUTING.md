@@ -84,7 +84,7 @@ Die Tabellen der Datenbank stehen an einer Stelle: `wohnpilot/schema.sql`. Die D
    # Richtig
    verbindung.execute("SELECT * FROM mieter WHERE name = ?", (name,))
    ```
-5. **Passwörter nie im Klartext speichern.** Wir speichern nur einen Hash mit Salt (Modul `hashlib`, Funktion `pbkdf2_hmac`) und vergleichen beim Anmelden die Hashes. Das bauen wir einmal im Bereich `konto` und alle anderen nutzen es.
+5. **Für echte Anwendungen Passwörter nie im Klartext speichern.** In unserem aktuellen Lernstand speichern wir nur erfundene Testpasswörter direkt, damit der Login einfach nachvollziehbar bleibt. Echte Passwörter dürfen damit niemals verwendet werden.
 6. **Eingaben prüfen,** bevor sie in die Datenbank gehen (z. B. Zählerstand nicht negativ, Datum nicht in der Zukunft). Die Prüfung steht in einer eigenen Funktion, die man testen kann.
 7. **Anzeige und Rechnen trennen.** Eine Funktion rechnet oder holt Daten, eine andere gibt aus.
 8. **Tabellen ändern nur nach Absprache mit dem Datenbank-Wart.** Sonst haben wir plötzlich zwei verschiedene Datenbanken. Die Änderung kommt in `schema.sql` und wird im Pull Request erklärt.
