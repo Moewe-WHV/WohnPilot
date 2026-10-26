@@ -60,6 +60,12 @@ BENUTZER = [
     ("ruben.sturm", "wohnpilot123", "Ruben", "Sturm",
      "ruben.sturm@example.de", "0159 63827104",
      "Waldwinkel", "16", "48143", "Münster", "mieter", "2026-02-14 12:25:00"),
+
+    # Nur für den lokalen Login-Test: Das Passwort lautet "test123".
+    # Dieses einfache Testpasswort niemals für echte Konten verwenden.
+    ("login.test", "test123", "Login", "Test",
+     "login.test@wohnpilot.example", None, None, None, None, None,
+     "mieter", "2026-10-20 12:00:00"),
 ]
 
 

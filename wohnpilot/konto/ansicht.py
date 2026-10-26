@@ -1,41 +1,32 @@
-import getpass
+from getpass import getpass
 
-from wohnpilot.konto.daten import anmelden
+from wohnpilot.konto.daten import pruefe_anmeldung
 from wohnpilot.wohnpilot_db import datenbank_erstellen
 
-FEHLERMELDUNG_ANMELDUNG = "Anmeldung nicht möglich - falsche Eingaben."
 
+def anmelden(verbindung):
+    """Fragt den Namen und das Passwort ab."""
+    benutzername = input("Benutzername: ")
+    passwort = getpass("Passwort: ")
 
-def anmeldeansicht(
-    verbindung,
-    eingabe=input,
-    passwort_eingabe=getpass.getpass,
-    ausgabe=print,
-):
-    """Fragt Zugangsdaten ab und gibt das angemeldete Konto zurück."""
-    # getpass zeigt das eingegebene Passwort nicht auf dem Bildschirm an.
-    benutzername = eingabe("Nutzername: ").strip()
-    passwort = passwort_eingabe("Passwort: ")
-
-    konto = anmelden(verbindung, benutzername, passwort)
+    konto = pruefe_anmeldung(verbindung, benutzername, passwort)
     if konto is None:
-        # Für falsche Namen und falsche Passwörter erscheint dieselbe Meldung.
-        ausgabe(FEHLERMELDUNG_ANMELDUNG)
+        print("Anmeldung nicht möglich - falsche Eingaben.")
         return None
 
-    ausgabe(f"Willkommen, {konto['vorname']} {konto['nachname']}!")
-    ausgabe(f"Angemeldet als: {konto['rolle']}")
+    print("Anmeldung erfolgreich. Hallo", konto["vorname"] + "!")
     return konto
 
 
 def main():
-    """Startet die Anmeldemaske mit der WohnPilot-Datenbank."""
-    # Das vorhandene Schema wird angelegt, falls es noch nicht existiert.
+    """Startet den Login und beendet die Sitzung nach Enter."""
     verbindung = datenbank_erstellen()
     try:
-        anmeldeansicht(verbindung)
+        konto = anmelden(verbindung)
+        if konto is not None:
+            input("Du bist angemeldet. Zum Abmelden Enter drücken.")
+            print("Du bist jetzt abgemeldet.")
     finally:
-        # Die Datenbankverbindung wird auch nach einer Fehlermeldung geschlossen.
         verbindung.close()
 
 
