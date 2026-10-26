@@ -1,11 +1,9 @@
-def aktuelles_nutzerkonto(): 
-    pass 
+import getpass
 
-def anmelden(): 
-    pass 
-
-def abmelden(): 
-    pass 
-
-def zeige_hauptmenue(nutzerkonto):
+def hole_nutzerkonto_nach_nutzername(benutzername):
+    """
+    Holt das Nutzerkonto basierend auf dem aktuellen Benutzernamen.
+    """
+def verbinden(): 
+        
     pass
