@@ -1,4 +1,11 @@
+from wohnpilot.konto.us01 import *
 ### Hauptmenü wird angezeigt ###
+
+
+
+#test benutzer_id wir ja später beim login genommen
+#benutzer_id=None
+benutzer_id=3
 
 def hauptmenu():
     print("Wohnpilot")
@@ -11,13 +18,13 @@ def hauptmenu():
     print("3 - Eigene Nachrichten")
     print("4 - Anwendung beenden (Logout?).")
 
-def kontaktdaten():
-    print("----------------------------------")
-    print("Eigene Kontaktdaten")
-    print("----------------------------------")
-    print("Name: " + "benutzer.vorname" + " " + "benutzer.nachname")
-    print("1 - Zurück zum Hauptmenü")
-    print("2 - Programm beenden")
+# def kontaktdaten():
+#     print("----------------------------------")
+#     print("Eigene Kontaktdaten")
+#     print("----------------------------------")
+#     print("Name: " + "benutzer.vorname" + " " + "benutzer.nachname")
+#     print("1 - Zurück zum Hauptmenü")
+#     print("2 - Programm beenden")
 
 def mietobjekte():
     print("----------------------------------")
@@ -53,9 +60,11 @@ while True:
     if auswahl == "1":
         print("Ausgewählt: 1 - Eigene Kontaktdaten ansehen")
         while True:
-            kontaktdaten()
+            kontaktdaten(benutzer_id)
             print("----------------------------------")
             auswahl = input("Eingabe der gewünschten Ziffer (1 oder 2), um fortzufahren: ")
+            print("1 - Zurück zum Hauptmenü")
+            print("2 - Programm beenden")
 
             if auswahl == "1":
                  print("Ausgewählt: 1 - Zurück zum Hauptmenü")
