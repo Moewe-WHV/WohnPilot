@@ -1,4 +1,4 @@
-import sqlite3 # Python-Modul für Verbindung zu SQLite
+import sqlite3  # Python-Modul für Verbindung zu SQLite
 from pathlib import Path
 
 # So wird immer die Datenbank im Projektordner geöffnet.
@@ -7,7 +7,8 @@ DB_PFAD = Path(__file__).resolve().parent.parent / "wohnpilot.db"
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS benutzer (
     benutzer_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    benutzername TEXT NOT NULL COLLATE NOCASE, -- SQLite für: Groß- und Kleinschreibung werden bei Abfragen ignoriert
+    -- SQLite ignoriert bei Abfragen Groß- und Kleinschreibung.
+    benutzername TEXT NOT NULL COLLATE NOCASE,
     passwort TEXT NOT NULL,
     vorname TEXT NOT NULL,
     nachname TEXT NOT NULL,
@@ -44,10 +45,12 @@ CREATE TABLE IF NOT EXISTS mietvertraege (
     erstellt_am TEXT NOT NULL,
     pdf TEXT,
 
-    CONSTRAINT FK_mietvertraege_mieter_id -- CONSTRAINT leitet die Definition einer Regel ein
+    -- CONSTRAINT leitet die Definition einer Regel ein.
+    CONSTRAINT FK_mietvertraege_mieter_id
         FOREIGN KEY (mieter_id)
         REFERENCES benutzer (benutzer_id)
-        ON DELETE RESTRICT, -- Benutzer darf nicht gelöscht werden, solange noch ein Mietvertrag besteht
+        -- Benutzer dürfen mit bestehendem Mietvertrag nicht gelöscht werden.
+        ON DELETE RESTRICT,
 
     CONSTRAINT FK_mietvertraege_verwalter_id
         FOREIGN KEY (verwalter_id)
@@ -60,10 +63,13 @@ CREATE TABLE IF NOT EXISTS mietvertraege (
         ON DELETE RESTRICT
 );
 
--- mittels Index können Abfragen schneller durchgeführt werden (ohne jedesmal die gesamte Tabelle zu durchsuchen)
-CREATE INDEX IF NOT EXISTS idx_mietvertraege_mieter_id ON mietvertraege (mieter_id);
-CREATE INDEX IF NOT EXISTS idx_mietvertraege_verwalter_id ON mietvertraege (verwalter_id);
-CREATE INDEX IF NOT EXISTS idx_mietvertraege_mietobjekt_id ON mietvertraege (mietobjekt_id);
+-- Indizes beschleunigen Abfragen, ohne die gesamte Tabelle zu durchsuchen.
+CREATE INDEX IF NOT EXISTS idx_mietvertraege_mieter_id
+    ON mietvertraege (mieter_id);
+CREATE INDEX IF NOT EXISTS idx_mietvertraege_verwalter_id
+    ON mietvertraege (verwalter_id);
+CREATE INDEX IF NOT EXISTS idx_mietvertraege_mietobjekt_id
+    ON mietvertraege (mietobjekt_id);
 
 CREATE TABLE IF NOT EXISTS mietvertragsdokumente (
     dokument_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -75,10 +81,13 @@ CREATE TABLE IF NOT EXISTS mietvertragsdokumente (
     CONSTRAINT FK_mietvertragsdokumente_mietvertrag_id
         FOREIGN KEY (mietvertrag_id)
         REFERENCES mietvertraege (mietvertrag_id)
-        ON DELETE RESTRICT -- solange ein Mietvertragsdokument auf den Mietvertrag verweist, darf der Mietvertrag nicht gelöscht werden
+        -- Solange ein Dokument auf den Mietvertrag verweist, darf dieser nicht
+        -- gelöscht werden.
+        ON DELETE RESTRICT
 );
 
-CREATE INDEX IF NOT EXISTS idx_mietvertragsdokumente_mietvertrag_id ON mietvertragsdokumente (mietvertrag_id);
+CREATE INDEX IF NOT EXISTS idx_mietvertragsdokumente_mietvertrag_id
+    ON mietvertragsdokumente (mietvertrag_id);
 
 CREATE TABLE IF NOT EXISTS nachrichten (
     nachricht_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -125,7 +134,7 @@ CREATE TABLE IF NOT EXISTS zaehler (
     zaehlerart TEXT NOT NULL CHECK (zaehlerart IN ('strom', 'gas', 'wasser')),
     zaehlernummer TEXT NOT NULL,
 
-    CONSTRAINT FK_zaehler_mietobjekt_id 
+    CONSTRAINT FK_zaehler_mietobjekt_id
         FOREIGN KEY (mietobjekt_id)
         REFERENCES mietobjekte (mietobjekt_id)
         ON DELETE RESTRICT
@@ -163,7 +172,8 @@ CREATE TABLE IF NOT EXISTS nebenkostenabrechnungen (
         ON DELETE RESTRICT
 );
 
-CREATE INDEX IF NOT EXISTS idx_nebenkostenabrechnungen_mietvertrag_id ON nebenkostenabrechnungen (mietvertrag_id);
+CREATE INDEX IF NOT EXISTS idx_nebenkostenabrechnungen_mietvertrag_id
+    ON nebenkostenabrechnungen (mietvertrag_id);
 
 CREATE TABLE IF NOT EXISTS wartungsmeldungen (
     wartungsmeldung_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -172,7 +182,9 @@ CREATE TABLE IF NOT EXISTS wartungsmeldungen (
     bearbeiter_id INTEGER,
     titel TEXT NOT NULL,
     beschreibung TEXT NOT NULL,
-    status TEXT NOT NULL CHECK (status IN ('offen', 'in_bearbeitung', 'erledigt', 'abgelehnt')),
+    status TEXT NOT NULL CHECK (
+        status IN ('offen', 'in_bearbeitung', 'erledigt', 'abgelehnt')
+    ),
     datum_gemeldet TEXT NOT NULL,
     datum_erledigt TEXT,
 
@@ -189,12 +201,16 @@ CREATE TABLE IF NOT EXISTS wartungsmeldungen (
     CONSTRAINT FK_wartungsmeldungen_bearbeiter_id
         FOREIGN KEY (bearbeiter_id)
         REFERENCES benutzer (benutzer_id)
-        ON DELETE SET NULL -- Wird der Benutzer = Bearbeiter gelöscht, wird die bearbeiter_id = NULL
+        -- Beim Löschen des Bearbeiters wird die bearbeiter_id auf NULL gesetzt.
+        ON DELETE SET NULL
 );
 
-CREATE INDEX IF NOT EXISTS idx_wartungsmeldungen_mietobjekt_id ON wartungsmeldungen (mietobjekt_id);
-CREATE INDEX IF NOT EXISTS idx_wartungsmeldungen_ersteller_id ON wartungsmeldungen (ersteller_id);
-CREATE INDEX IF NOT EXISTS idx_wartungsmeldungen_bearbeiter_id ON wartungsmeldungen (bearbeiter_id);
+CREATE INDEX IF NOT EXISTS idx_wartungsmeldungen_mietobjekt_id
+    ON wartungsmeldungen (mietobjekt_id);
+CREATE INDEX IF NOT EXISTS idx_wartungsmeldungen_ersteller_id
+    ON wartungsmeldungen (ersteller_id);
+CREATE INDEX IF NOT EXISTS idx_wartungsmeldungen_bearbeiter_id
+    ON wartungsmeldungen (bearbeiter_id);
 """
 
 
@@ -216,22 +232,22 @@ def datenbank_erstellen(db_pfad=DB_PFAD):
     spalten = conn.execute("PRAGMA table_info(benutzer)").fetchall()
     spaltennamen = [spalte["name"] for spalte in spalten]
     if "passwort_hash" in spaltennamen and "passwort" not in spaltennamen:
-        conn.execute(
-            "ALTER TABLE benutzer RENAME COLUMN passwort_hash TO passwort"
-        )
+        conn.execute("ALTER TABLE benutzer RENAME COLUMN passwort_hash TO passwort")
 
     conn.commit()
     return conn
 
 
 if __name__ == "__main__":
-    # Dieser Block läuft nur, wenn die Datei direkt gestartet wird, also wenn eine andere py-Datei das Skript importiert
-    # ansonsten muss im Terminal "python wohnpilot_db.py" ausgeführt werden, um die Tabellen zu erstellen
+    # Dieser Block läuft nur, wenn die Datei direkt gestartet wird, nicht beim
+    # Import in einer anderen Python-Datei.
+    # Zum Erstellen der Tabellen im Terminal "python wohnpilot_db.py" ausführen.
     conn = datenbank_erstellen()
     # Entspricht SHOW TABLES in SQL
     for zeile in conn.execute(
-        # Tabellen mit sqlite als Präfix werden von der Suche ausgeschlossen, weil es interne Dateien geben kann (von SQLite selbst)
-        "SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%' ORDER BY name"
+        # Interne SQLite-Tabellen werden von der Suche ausgeschlossen.
+        "SELECT name FROM sqlite_master WHERE type = 'table' "
+        "AND name NOT LIKE 'sqlite_%' ORDER BY name"
     ):
         print(zeile["name"])
     conn.close()

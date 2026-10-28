@@ -6,16 +6,19 @@ def hole_nutzerkonto_nach_nutzername(verbindung, benutzername):
         FROM benutzer
         WHERE benutzername = ?
     """
-    return verbindung.execute(sql, (benutzername,)).fetchone()
+    return verbindung.execute(sql, (benutzername,)).fetchall()
 
 
-def pruefe_anmeldung(verbindung, benutzername, passwort):
+def anmelden(verbindung, benutzername, passwort):
     """Prüft die Zugangsdaten und gibt das Konto ohne Passwort zurück."""
-    konto = hole_nutzerkonto_nach_nutzername(verbindung, benutzername.strip())
-
-    if konto is None:
+    if not benutzername or not passwort:
         return None
 
+    konten = hole_nutzerkonto_nach_nutzername(verbindung, benutzername.strip())
+    if len(konten) != 1:
+        return None
+
+    konto = konten[0]
     if konto["passwort"] != passwort:
         return None
 

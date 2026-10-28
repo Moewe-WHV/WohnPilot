@@ -1,6 +1,6 @@
 from getpass import getpass
 
-from wohnpilot.konto.daten import pruefe_anmeldung
+from wohnpilot.konto.daten import anmelden as pruefe_anmeldung
 from wohnpilot.wohnpilot_db import datenbank_erstellen
 
 

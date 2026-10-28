@@ -90,9 +90,10 @@ Danach den Login starten:
 python -m wohnpilot.konto.ansicht
 ```
 
-Alle Beispielkonten verwenden dasselbe Testpasswort: `wohnpilot123`. Das
-Passwort wird für dieses Lernprojekt direkt verglichen und ungeschützt
-gespeichert. Verwende nur erfundene Testdaten, niemals echte Passwörter.
+Die erfundenen Beispielkonten verwenden das Passwort `wohnpilot123`. Für den
+separaten Login-Test gelten `login.test` und `test123`. Die Passwörter werden
+für dieses Lernprojekt direkt verglichen und ungeschützt gespeichert. Verwende
+nur erfundene Testdaten, niemals echte Passwörter.
 
 ### Tests starten
 
