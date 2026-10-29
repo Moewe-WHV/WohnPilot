@@ -28,7 +28,7 @@ def mietobjekte():
     print("----------------------------------")
     print("Eigene Mietobjekte")
     print("----------------------------------")
-    print("0 - Testobjekt")
+    print("0 - Zahlungen anzeigen")
     print("1 - Zurück zum Hauptmenü")
     print("2 - Programm beenden")
 
@@ -83,7 +83,7 @@ while True:
 
             if auswahl == "0":
                 #US03()
-                print("Ausgewählt: 0 - Testobjekt")
+                print("Ausgewählt: 0 - Zahlungen anzeigen")
                 while True:
                     zahlungen()
                     zeige_zahlungen(verbindung, 8)
